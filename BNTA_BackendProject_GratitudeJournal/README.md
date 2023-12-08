@@ -191,6 +191,8 @@ GET `localhost:8080/journal-entries`
 
 
 GET `localhost:8080/journal-entries/id`
+
+POST `localhost:8080/journal-entries/id` RequestBody: `JournalEntry`
 	
 	{
 	    "id": 1,
@@ -198,16 +200,14 @@ GET `localhost:8080/journal-entries/id`
 	    "weekDay": "FRIDAY",
 	    "moodRating": "REALLYGOOD"
 	}
-
-POST `localhost:8080/journal-entries/id` RequestBody: `JournalEntry`
-	
+    
 
 PATCH `localhost:8080/journal-entries/id` RequestBody: `EntryDTO`
 
 	{
-		“content”: “I had a beaut day”,
-		“weekDay”: “WEDNESDAY”,
-		“moodRating”: “POSITIVE”
+		"content": "I had a beaut day",
+		"weekDay": "WEDNESDAY",
+		"moodRating": "POSITIVE"
 	 }
 
 DELETE `localhost:8080/journal-entries/id`
