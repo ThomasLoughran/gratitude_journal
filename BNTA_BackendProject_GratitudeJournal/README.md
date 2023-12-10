@@ -195,7 +195,6 @@ GET `localhost:8080/journal-entries/id`
 POST `localhost:8080/journal-entries/id` RequestBody: `JournalEntry`
 	
 	{
-	    "id": 1,
 	    "content": "I had a great day today",
 	    "weekDay": "FRIDAY",
 	    "moodRating": "REALLYGOOD"
