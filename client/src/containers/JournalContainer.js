@@ -15,8 +15,21 @@ const JournalContainer = () => {
       console.error("help", error);
     }
   };
+
+  const fetchAllEntriesByUserId = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8080/journal-entries/${id}/all`);
+      const data = await response.json();
+      console.log(data);
+      setJournalEntries(data);
+    } catch (error){
+      console.error("error fetching entries", error);
+    }
+  }
+
   useEffect(() => {
     fetchUserById(1);
+    fetchAllEntriesByUserId(2);
   }, []);
   return (
     <>
