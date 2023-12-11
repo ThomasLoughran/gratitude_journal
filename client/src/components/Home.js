@@ -1,18 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const Home = () => {
-    return ( 
-
+    return (
         <>
-        <p>
-            
-            Home is me
-        </p>
-        <Outlet />
+            <nav>
+                <ul>
+                    <li><Link to="/entries">All entries</Link></li>
+                    <li><Link to="/entries/new">Create New Entry</Link></li>
+                </ul>
+            </nav>
+            <Outlet />
         </>
-
-     );
-
+    );
 }
- 
+
 export default Home;

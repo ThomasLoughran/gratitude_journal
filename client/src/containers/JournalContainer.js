@@ -31,8 +31,7 @@ const JournalContainer = () => {
   };
 
   const postNewEntry = async (newEntry, userId) => {
-    const response = await fetch(
-      `http://localhost:8080/journal-entries/${userId}`,
+    await fetch(`http://localhost:8080/journal-entries/${userId}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -75,8 +74,7 @@ const JournalContainer = () => {
   return (
     <>
       <h1>Gratitude Journal</h1>
-      <RouterProvider router = {journalEntryRoutes} />
-      
+      <RouterProvider router={journalEntryRoutes} />
     </>
   );
 };

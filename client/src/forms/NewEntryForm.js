@@ -1,9 +1,32 @@
-const NewEntryForm = () => {
-    return ( 
+import { useState } from "react";
+
+const NewEntryForm = ({ postNewEntry }) => {
+
+    const [newEntry, setNewEntry] = useState(
+        {
+            content: "",
+            weekDay: "",
+            moodRating: "",
+        }
+    );
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        postNewEntry(newEntry, 2); // remove dis line in d future
+        setNewEntry(
+            {
+                content: "",
+                weekDay: "",
+                moodRating: "",
+            }
+        );
+    }
+
+    return (
         <>
-        <p>I am a new entry form</p>
+
         </>
-     );
+    );
 }
- 
+
 export default NewEntryForm;
