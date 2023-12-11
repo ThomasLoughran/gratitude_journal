@@ -14,4 +14,6 @@ public interface JournalEntryRepository extends JpaRepository<JournalEntry, Long
     @Query
     List<JournalEntry> findByWeekDayAndUserId(WeekDay weekDay, long id);
 
+    @Query
+    List<JournalEntry> findByUserId(long id);
 }

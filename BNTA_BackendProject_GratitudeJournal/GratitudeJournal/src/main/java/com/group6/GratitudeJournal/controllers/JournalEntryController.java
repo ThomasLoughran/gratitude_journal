@@ -29,20 +29,28 @@ public class JournalEntryController {
 
     //find all - tested ✅
     @GetMapping
-    public ResponseEntity<List<JournalEntry>> getAllJournalEntries(){
+    public ResponseEntity<List<JournalEntry>> getAllJournalEntries() {
         return new ResponseEntity<>(journalEntryService.getAllEntries(), HttpStatus.OK);
     }
 
 //    find journal entries by Id - tested ✅
     @GetMapping(value = "/{id}")
-    public ResponseEntity<JournalEntry> getJournalEntryById(@PathVariable long id){
+    public ResponseEntity<JournalEntry> getJournalEntryById(@PathVariable long id) {
         JournalEntry journalEntry = journalEntryService.findEntryById(id);
         return new ResponseEntity<>(journalEntry, HttpStatus.OK);
     }
 
-//    add a new journal entry by user Id - tested ✅
+    //    find journal entries by userId - tested ✅
+    @GetMapping(value = "/{id}/all")
+    public ResponseEntity<List<JournalEntry>> getAllJournalEntriesByUserId(@PathVariable long id) {
+        List<JournalEntry> journalEntries = journalEntryService.findEntryByUserId(id);
+        return new ResponseEntity<>(journalEntries, HttpStatus.OK);
+    }
+
+
+    //    add a new journal entry by user Id - tested ✅
     @PostMapping(value = "/{id}")
-    public ResponseEntity<JournalEntry> addNewJournalEntry(@PathVariable long id, @RequestBody JournalEntry journalEntry){
+    public ResponseEntity<JournalEntry> addNewJournalEntry(@PathVariable long id, @RequestBody JournalEntry journalEntry) {
         journalEntryService.addNewJournalEntry(id, journalEntry);
         if (journalEntryService.addNewJournalEntry(id, journalEntry)) {
             return new ResponseEntity<>(journalEntry, HttpStatus.CREATED);
@@ -64,13 +72,10 @@ public class JournalEntryController {
 //   @DELETE Delete journal entry by Journal ID
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity deleteJournalEntry(@PathVariable long id){
+    public ResponseEntity deleteJournalEntry(@PathVariable long id) {
         journalEntryService.deleteJournalEntry(id);
-        return new ResponseEntity(null,HttpStatus.NO_CONTENT);
+        return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
-
-
-
 
 
 }

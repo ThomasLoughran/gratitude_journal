@@ -60,6 +60,10 @@ public class JournalEntryService {
         }
     }
 
+    public List<JournalEntry> getAllJournalEntriesByUserId(long userId) {
+        return journalEntryRepository.findByUserId(userId);
+    }
+
     //    delete journal entry
     public void deleteJournalEntry(long id) {
         journalEntryRepository.deleteById(id);
