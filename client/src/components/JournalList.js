@@ -1,8 +1,15 @@
-const JournalList = () => {
+import JournalEntry from './JournalEntry';
+
+const JournalList = ({journalEntries}) => {
+
+    const mappedEntries = journalEntries.map((oneEntry) => {
+        return <JournalEntry key={oneEntry.id} oneEntry={oneEntry} />
+    })
     return ( 
-        <p>
-            I am a journal list
-        </p>
+        <>
+        <h2>My Posts</h2>
+        {mappedEntries}
+        </>
      );
 }
  

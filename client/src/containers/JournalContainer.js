@@ -20,7 +20,6 @@ const JournalContainer = () => {
       const response = await fetch(`http://localhost:8080/journal-entries/${id}/all`);
       const data = await response.json();
       setJournalEntries(data);
-      console.log("get all response",data)
     } catch (error){
       console.error("error fetching entries", error);
     }
@@ -32,7 +31,6 @@ const JournalContainer = () => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newEntry)
     });
-    console.log("post mapping journal entries", journalEntries);
     setJournalEntries([...journalEntries, newEntry]);
   }
 
@@ -52,7 +50,7 @@ const JournalContainer = () => {
   return (
     <>
       <h1>Gratitude Journal</h1>
-      <JournalList journals={journalEntries} />
+      <JournalList journalEntries={journalEntries} />
     </>
   );
 };
