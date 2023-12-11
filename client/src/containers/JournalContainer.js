@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import JournalList from "../components/JournalList";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "../components/Home";
+import NewEntryForm from "../forms/NewEntryForm";
 
 const JournalContainer = () => {
   const [journalEntries, setJournalEntries] = useState([]);
@@ -17,40 +20,63 @@ const JournalContainer = () => {
 
   const fetchAllEntriesByUserId = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8080/journal-entries/${id}/all`);
+      const response = await fetch(
+        `http://localhost:8080/journal-entries/${id}/all`
+      );
       const data = await response.json();
       setJournalEntries(data);
-    } catch (error){
+    } catch (error) {
       console.error("error fetching entries", error);
     }
-  }
+  };
 
   const postNewEntry = async (newEntry, userId) => {
-    const response = await fetch(`http://localhost:8080/journal-entries/${userId}`, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(newEntry)
-    });
+    const response = await fetch(
+      `http://localhost:8080/journal-entries/${userId}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newEntry),
+      }
+    );
     setJournalEntries([...journalEntries, newEntry]);
-  }
+  };
 
   const newPostObject = {
     content: "This is a test",
     weekDay: "FRIDAY",
-    moodRating: "REALLYGOOD"
-  }
-
+    moodRating: "REALLYGOOD",
+  };
 
   useEffect(() => {
     fetchUserById(1);
     fetchAllEntriesByUserId(2);
     postNewEntry(newPostObject, 2);
-
   }, []);
+
+  const journalEntryRoutes = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+      children: [
+        {
+          path: "/entries",
+          element: <JournalList journalEntries={journalEntries} />,
+        },
+
+        {
+          path: "/entries/new",
+          element: <NewEntryForm postNewEntry={postNewEntry} />,
+        },
+      ],
+    },
+  ]);
+
   return (
     <>
       <h1>Gratitude Journal</h1>
-      <JournalList journalEntries={journalEntries} />
+      <RouterProvider router = {journalEntryRoutes} />
+      
     </>
   );
 };
