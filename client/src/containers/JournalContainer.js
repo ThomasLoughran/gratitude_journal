@@ -74,23 +74,21 @@ const JournalContainer = () => {
     });
 
     const entryIndex = journalEntries.indexOf(entry);
-    console.log("entry:", entry);
-    console.log("Index of patch request", entryIndex);
-    const updatedJournalEntries = [...journalEntries].splice(entryIndex, 1, entry);
-    setJournalEntries(updatedJournalEntries);
+    const updatedJournalEntries = journalEntries;
+    updatedJournalEntries.splice(entryIndex, 0, entry);
+    setJournalEntries(journalEntries);
   };
 
   const newPostObject = {
     content: "This is a test",
     weekDay: "FRIDAY",
-    moodRating: "REALLYGOOD",
+    moodRating: "REALLYGOOD"
   };
 
   useEffect(() => {
     fetchUserById(1);
     fetchAllEntriesByUserId(2);
     // postNewEntry(newPostObject, 2);
-    // patchEntryById(newPostObject, 2)
   }, []);
 
   const journalEntryRoutes = createBrowserRouter([
