@@ -11,12 +11,12 @@ const JournalContainer = () => {
   const [journalEntries, setJournalEntries] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
-   // Set user function
-   const setUser = (user) => {
+  // Set user function
+  const setUser = (user) => {
     setCurrentUser(user);
   };
 
-    const fetchUserById = async (id) => {
+  const fetchUserById = async (id) => {
     try {
       const response = await fetch(`http://localhost:8080/users/${id}`);
       const data = await response.json();
@@ -58,16 +58,31 @@ const JournalContainer = () => {
     }
 
   };
-//   const newPostObject = {
-//     content: "This is a test",
-//     weekDay: "FRIDAY",
-//     moodRating: "REALLYGOOD",
-//   };
+
+  const patchEntryById = async (entry) => {
+
+    const response = await fetch(`http://localhost:8080/journal-entries/${entry.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(entry)
+    });
+
+    const entryIndex = journalEntries.indexOf(entry);
+    const updatedJournalEntries = [...journalEntries].splice(entryIndex, 1, entry);
+    setJournalEntries(updatedJournalEntries);
+  };
+
+  const newPostObject = {
+    content: "This is a test",
+    weekDay: "FRIDAY",
+    moodRating: "REALLYGOOD",
+  };
 
   useEffect(() => {
     fetchUserById(1);
     fetchAllEntriesByUserId(2);
-    // postNewEntry(newPostObject, 2);
+    postNewEntry(newPostObject, 2);
+    patchEntryById(newPostObject, 2)
   }, []);
 
   const journalEntryRoutes = createBrowserRouter([
@@ -77,12 +92,18 @@ const JournalContainer = () => {
       children: [
         {
           path: "/entries",
-          element: <JournalList journalEntries={journalEntries} />,
+          element: <JournalList
+            journalEntries={journalEntries}
+            patchEntryById={patchEntryById} />,
         },
 
         {
           path: "/entries/new",
           element: <NewEntryForm postNewEntry={postNewEntry} />,
+        },
+        {
+          path: "/entries/edit",
+          element: <NewEntryForm patchEntryById={patchEntryById} />,
         },
       ],
     },
@@ -92,7 +113,7 @@ const JournalContainer = () => {
     <>
       <h1>Gratitude Journal</h1>
       <UserContext.Provider value={{ user: currentUser }}>
-      <RouterProvider router={journalEntryRoutes} />
+        <RouterProvider router={journalEntryRoutes} />
       </UserContext.Provider>
     </>
   );
