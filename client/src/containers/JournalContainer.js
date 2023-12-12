@@ -94,15 +94,17 @@ const JournalContainer = () => {
           element: <JournalList
             journalEntries={journalEntries}
             patchEntryById={patchEntryById} />,
+        children: [
+            {
+                path: "edit/:id",
+                element: <NewEntryForm submitForm={patchEntryById} />,
+            }
+        ]
         },
 
         {
           path: "/entries/new",
           element: <NewEntryForm submitForm={postNewEntry} />,
-        },
-        {
-          path: "/entries/edit",
-          element: <NewEntryForm submitForm={patchEntryById} />,
         },
       ],
     },

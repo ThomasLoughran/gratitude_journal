@@ -1,3 +1,5 @@
+import { Link, Outlet } from "react-router-dom";
+
 const JournalEntry = ({ oneEntry, patchEntryById }) => {
     
     const handleEdit = () => {
@@ -9,7 +11,8 @@ const JournalEntry = ({ oneEntry, patchEntryById }) => {
             <p>Day of the Week: {oneEntry.weekDay}</p>
             <p>{oneEntry.content}</p>
             <p>How I feel: {oneEntry.moodRating}</p>
-            <button onClick={handleEdit}>Edit</button>
+            <button><Link to= {`/entries/edit/${oneEntry.id}`} state={{oneEntry} }>Edit</Link></button>
+            <Outlet />
         </article>
     );
 }
