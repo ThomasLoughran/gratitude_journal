@@ -75,20 +75,13 @@ const JournalContainer = () => {
 
     const entryIndex = journalEntries.indexOf(entry);
     const updatedJournalEntries = journalEntries;
-    updatedJournalEntries.splice(entryIndex, 0, entry);
-    setJournalEntries(journalEntries);
-  };
-
-  const newPostObject = {
-    content: "This is a test",
-    weekDay: "FRIDAY",
-    moodRating: "REALLYGOOD"
+    updatedJournalEntries.splice(entryIndex, 1, entry);
+    setJournalEntries(updatedJournalEntries);
   };
 
   useEffect(() => {
     fetchUserById(1);
     fetchAllEntriesByUserId(2);
-    // postNewEntry(newPostObject, 2);
   }, []);
 
   const journalEntryRoutes = createBrowserRouter([
