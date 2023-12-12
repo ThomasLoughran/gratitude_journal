@@ -44,7 +44,7 @@ const JournalContainer = () => {
   const newPostObject = {
     content: "This is a test",
     weekDay: "FRIDAY",
-    moodRating: "REALLYGOOD",
+    moodRating: "REALLYGOOD"
   };
 
   useEffect(() => {
