@@ -52,11 +52,7 @@ public class JournalEntryController {
     @PostMapping(value = "/{id}")
     public ResponseEntity<JournalEntry> addNewJournalEntry(@PathVariable long id, @RequestBody JournalEntry journalEntry) {
         journalEntryService.addNewJournalEntry(id, journalEntry);
-        if (journalEntryService.addNewJournalEntry(id, journalEntry)) {
-            return new ResponseEntity<>(journalEntry, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-        }
+        return new ResponseEntity<>(journalEntry, HttpStatus.CREATED);
     }
 
 

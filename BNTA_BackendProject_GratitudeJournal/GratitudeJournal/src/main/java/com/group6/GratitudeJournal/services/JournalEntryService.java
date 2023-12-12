@@ -46,18 +46,10 @@ public class JournalEntryService {
     }
 
     //    add new journal entry
-    public boolean addNewJournalEntry(long id, JournalEntry journalEntry) { //make it void?
+    public void addNewJournalEntry(long id, JournalEntry journalEntry) { //make it void?
         User foundUser = userService.getUserById(id);
-        List<JournalEntry> entryCount = journalEntryRepository.findByWeekDayAndUserId(journalEntry.getWeekDay(), foundUser.getId());
-
-        if (entryCount.size() < 5){
-            journalEntry.setUser(foundUser);
-            journalEntryRepository.save(journalEntry);
-            return true;
-
-        } else {
-            return false;
-        }
+        journalEntry.setUser(foundUser);
+        journalEntryRepository.save(journalEntry);
     }
 
     public List<JournalEntry> getAllJournalEntriesByUserId(long userId) {

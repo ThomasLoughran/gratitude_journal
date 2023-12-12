@@ -56,6 +56,7 @@ const JournalContainer = () => {
     } catch (error) {
       console.error("Error posting new entry:", error);
     }
+
   };
 //   const newPostObject = {
 //     content: "This is a test",
