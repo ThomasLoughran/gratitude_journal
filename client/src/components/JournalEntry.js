@@ -6,7 +6,7 @@ const JournalEntry = ({ oneEntry, deleteEntryById}) => {
     const {currentUser} = useContext(UserContext);
 
     const handleDeleteButton = () => {
-        deleteEntryById(oneEntry.id, currentUser.id);
+        deleteEntryById(oneEntry.id);
     }
 
     return (

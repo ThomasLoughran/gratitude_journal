@@ -59,9 +59,9 @@ const JournalContainer = () => {
 
   };
 
-  const deleteEntryById = async (entryId, userId) => {
+  const deleteEntryById = async (entryId) => {
     const response = await fetch(
-      `http://localhost:8080/journal-entries/${userId}`,
+      `http://localhost:8080/journal-entries/${entryId}`,
       {
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
