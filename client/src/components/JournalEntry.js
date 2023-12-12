@@ -1,6 +1,7 @@
 const JournalEntry = ({ oneEntry, patchEntryById }) => {
-
-    const handleEdit = (oneEntry) => {
+    
+    const handleEdit = () => {
+        console.log("oneEntry: ", oneEntry)
         patchEntryById(oneEntry);
     }
 

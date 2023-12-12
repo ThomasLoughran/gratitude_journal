@@ -21,7 +21,7 @@ const JournalContainer = () => {
       const response = await fetch(`http://localhost:8080/users/${id}`);
       const data = await response.json();
       setUser(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error("Error fetching user:", error);
     }
@@ -73,9 +73,11 @@ const JournalContainer = () => {
       body: JSON.stringify(entryDTO)
     });
 
-    // const entryIndex = journalEntries.indexOf(entry);
-    // const updatedJournalEntries = [...journalEntries].splice(entryIndex, 1, entry);
-    // setJournalEntries(updatedJournalEntries);
+    const entryIndex = journalEntries.indexOf(entry);
+    console.log("entry:", entry);
+    console.log("Index of patch request", entryIndex);
+    const updatedJournalEntries = [...journalEntries].splice(entryIndex, 1, entry);
+    setJournalEntries(updatedJournalEntries);
   };
 
   const newPostObject = {
@@ -87,8 +89,8 @@ const JournalContainer = () => {
   useEffect(() => {
     fetchUserById(1);
     fetchAllEntriesByUserId(2);
-    postNewEntry(newPostObject, 2);
-    patchEntryById(newPostObject, 2)
+    // postNewEntry(newPostObject, 2);
+    // patchEntryById(newPostObject, 2)
   }, []);
 
   const journalEntryRoutes = createBrowserRouter([
