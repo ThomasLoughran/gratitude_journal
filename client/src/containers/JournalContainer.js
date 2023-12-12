@@ -61,15 +61,21 @@ const JournalContainer = () => {
 
   const patchEntryById = async (entry) => {
 
+    const entryDTO = {
+      content: entry.content,
+      weekDay: entry.weekDay,
+      moodRating: entry.moodRating
+    }
+
     const response = await fetch(`http://localhost:8080/journal-entries/${entry.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(entry)
+      body: JSON.stringify(entryDTO)
     });
 
-    const entryIndex = journalEntries.indexOf(entry);
-    const updatedJournalEntries = [...journalEntries].splice(entryIndex, 1, entry);
-    setJournalEntries(updatedJournalEntries);
+    // const entryIndex = journalEntries.indexOf(entry);
+    // const updatedJournalEntries = [...journalEntries].splice(entryIndex, 1, entry);
+    // setJournalEntries(updatedJournalEntries);
   };
 
   const newPostObject = {

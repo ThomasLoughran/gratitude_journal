@@ -9,7 +9,7 @@ const JournalEntry = ({ oneEntry, patchEntryById }) => {
             <p>Day of the Week: {oneEntry.weekDay}</p>
             <p>{oneEntry.content}</p>
             <p>How I feel: {oneEntry.moodRating}</p>
-            <button onClick={handleEdit}>Edit Post</button>
+            <button onClick={handleEdit}>Edit</button>
         </article>
     );
 }
