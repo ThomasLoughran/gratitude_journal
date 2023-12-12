@@ -98,11 +98,11 @@ const JournalContainer = () => {
 
         {
           path: "/entries/new",
-          element: <NewEntryForm postNewEntry={postNewEntry} />,
+          element: <NewEntryForm submitForm={postNewEntry} />,
         },
         {
           path: "/entries/edit",
-          element: <NewEntryForm patchEntryById={patchEntryById} />,
+          element: <NewEntryForm submitForm={patchEntryById} />,
         },
       ],
     },

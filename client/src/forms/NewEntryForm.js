@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewEntryForm = ({ postNewEntry }) => {
+const NewEntryForm = ({ entry, submitForm }) => {
 
     const [newEntry, setNewEntry] = useState(
         {
@@ -12,7 +12,7 @@ const NewEntryForm = ({ postNewEntry }) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        postNewEntry(newEntry, 2); // remove dis line in d future
+        submitForm(newEntry, 2); // remove dis line in d future
         setNewEntry(
             {
                 content: "",
