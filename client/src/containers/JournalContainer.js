@@ -5,7 +5,7 @@ import Home from "../components/Home";
 import NewEntryForm from "../forms/NewEntryForm";
 
 //exporting userContext so we can use it in our other files
-const UserContext = createContext();
+export const UserContext = createContext();
 
 const JournalContainer = () => {
   const [journalEntries, setJournalEntries] = useState([]);
@@ -58,6 +58,18 @@ const JournalContainer = () => {
     }
 
   };
+
+  const deleteEntryById = async (entryId, userId) => {
+    const response = await fetch(
+      `http://localhost:8080/journal-entries/${userId}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+      setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
+  };
+
 //   const newPostObject = {
 //     content: "This is a test",
 //     weekDay: "FRIDAY",
@@ -77,7 +89,7 @@ const JournalContainer = () => {
       children: [
         {
           path: "/entries",
-          element: <JournalList journalEntries={journalEntries} />,
+          element: <JournalList journalEntries={journalEntries} deleteEntryById={deleteEntryById} />,
         },
 
         {
@@ -91,7 +103,7 @@ const JournalContainer = () => {
   return (
     <>
       <h1>Gratitude Journal</h1>
-      <UserContext.Provider value={{ user: currentUser }}>
+      <UserContext.Provider value={{ currentUser: currentUser }}>
       <RouterProvider router={journalEntryRoutes} />
       </UserContext.Provider>
     </>
@@ -99,3 +111,4 @@ const JournalContainer = () => {
 };
 
 export default JournalContainer;
+

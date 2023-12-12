@@ -1,9 +1,9 @@
 import JournalEntry from './JournalEntry';
 
-const JournalList = ({journalEntries}) => {
+const JournalList = ({journalEntries, deleteEntryById}) => {
 
     const mappedEntries = journalEntries.map((oneEntry) => {
-        return <JournalEntry key={oneEntry.id} oneEntry={oneEntry} />
+        return <JournalEntry key={oneEntry.id} oneEntry={oneEntry} deleteEntryById={deleteEntryById}/>
     })
     return ( 
         <>
