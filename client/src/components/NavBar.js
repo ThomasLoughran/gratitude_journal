@@ -1,26 +1,32 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
-import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 
 
 
-const NavBar = ({setJournalEntries}) => {
+
+const NavBar = ({ setJournalEntries }) => {
+
+  const [collapsed, setCollapsed] = useState(true);  
+  
+  const handleToggleSidebar = () => {
+    setCollapsed(!collapsed)
+  }
+
   const { currentUser } = useContext(UserContext) || {};
-
 
   if (!currentUser) {
     return null;
   }
 
- const renderSignOut = () =>{
-    if(currentUser === null){
+  const renderSignOut = () => {
+    if (currentUser === null) {
       return <> </>
-    } else{
-     return<MenuItem component={<Link to ="/" onClick={handleLogout}/>}>Sign Out</MenuItem>
+    } else {
+      return <MenuItem component={<Link to="/" onClick={handleLogout} />}>Sign Out</MenuItem>
     }
   }
-
 
   const handleLogout = () => {
     alert("You have successfully signed out!")
@@ -29,12 +35,13 @@ const NavBar = ({setJournalEntries}) => {
   };
 
   // const {collapseSidebar} = collapsed()
+  // const { collapseSidebar, toggleSidebar } = defaultCollapsed();
 
   return (
     <>
-      <Sidebar>
+      <Sidebar collapsed={collapsed}>
         <Menu
-       
+
           menuItemStyles={{
             button: {
               // the active class will be added automatically by react router
@@ -46,7 +53,7 @@ const NavBar = ({setJournalEntries}) => {
             },
           }}
         >
-          
+
           <MenuItem component={<Link to="/" />}> Home</MenuItem>
           <MenuItem component={<Link to="/entries" />}> My Entries</MenuItem>
           <MenuItem component={<Link to="/entries/new" />}> Create New Journal Entry</MenuItem>
@@ -55,7 +62,7 @@ const NavBar = ({setJournalEntries}) => {
 
         </Menu>
       </Sidebar>
-      <Outlet/>
+      <Outlet />
     </>
   );
 }
