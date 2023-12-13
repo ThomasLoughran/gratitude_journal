@@ -31,10 +31,20 @@ const JournalContainer = () => {
 
   const postNewAccount = async (user) => {
     try {
-      // Implement create account logic
-      console.log('Creating account:',  user.name, user.emailAddress );
+      const response = await fetch(`http://localhost:8080/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      });
+
+      if (response.status === 201) {
+        const postedUser = await response.json();
+        setCurrentUser(postedUser);
+      } else {
+        console.error("Failed create new entry. Status code:", response.status);
+      }
     } catch (error) {
-      console.error('Error creating account:', error.message);
+      console.error("Error posting new user:", error);
     }
   };
 

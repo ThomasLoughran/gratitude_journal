@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AuthenticationForm = ({ onSignIn}) => {
+const AuthenticationForm = ({ submitForm }) => {
   const [formData, setFormData] = useState({
     name: '',
     emailAddress: '',
@@ -16,7 +16,7 @@ const AuthenticationForm = ({ onSignIn}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignIn(formData);
+    submitForm(formData);
   };
 
   return (

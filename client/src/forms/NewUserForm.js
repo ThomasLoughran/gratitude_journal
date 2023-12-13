@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const NewUserForm = ({ onSignIn}) => {
+const NewUserForm = ({ submitForm}) => {
   const [formData, setFormData] = useState({
     name: '',
     emailAddress: '',
@@ -16,13 +16,17 @@ const NewUserForm = ({ onSignIn}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignIn(formData);
+    submitForm(formData);
+    setFormData({
+      name: '',
+      emailAddress: '',
+    })
   };
 
   return (
     <>
       <div>
-        <h2>'Create New Account'</h2>
+        <h2>Create New Account</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Name:
@@ -42,7 +46,7 @@ const NewUserForm = ({ onSignIn}) => {
               onChange={handleChange}
             />
           </label>
-          <button type="submit">'Create Account'</button>
+          <button type="submit">Create Account</button>
         </form>
       </div>
     </>
