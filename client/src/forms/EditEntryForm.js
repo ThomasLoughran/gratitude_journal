@@ -3,12 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 
 const EditEntryForm = ({ submitForm, entryToEdit }) => {
 
-  // const location = useLocation();
-  // const oneEntry = location.state;
-  // console.log(oneEntry);
-
   const {id} = useParams();
-  console.log(id);
   
     const [newEntry, setNewEntry] = useState(
         {
@@ -19,6 +14,16 @@ const EditEntryForm = ({ submitForm, entryToEdit }) => {
         }
     );
 
+  const weekdays = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
+  const weekdayOptions = weekdays.map((weekday) => {
+    return <option value={weekday}>{weekday}</option>
+  })
+
+  const moods = ['REALLYBAD', 'NEGATIVE', 'INDIFFERENT', 'POSITIVE', 'REALLYGOOD'];
+  const moodOptions = moods.map((mood) => {
+    return <option value={mood}>{mood}</option>
+  })
+
     useEffect(() => {
       if (entryToEdit && entryToEdit.id == id){
         setNewEntry(entryToEdit);
@@ -27,15 +32,19 @@ const EditEntryForm = ({ submitForm, entryToEdit }) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        submitForm(newEntry, 2); // remove dis line in d future
-        setNewEntry(
-            {
-                content: "",
-                weekDay: "",
-                moodRating: "",
-            }
-        );
-        console.log("Journal entry posted successfully!");
+        if (newEntry.content === "" || newEntry.moodRating=== "" || newEntry.weekDay === ""){
+          return alert("Incomplete form")
+        } else {
+          submitForm(newEntry, 2); // remove dis line in d future
+          setNewEntry(
+              {
+                  content: "",
+                  weekDay: "",
+                  moodRating: "",
+              }
+          );
+          console.log("Journal entry posted successfully!");
+        }
     }
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -57,24 +66,22 @@ const EditEntryForm = ({ submitForm, entryToEdit }) => {
             onChange={handleInputChange}
           />
         </label>
-        <label>
-          Weekday:
-          <input
-            type="text"
-            name="weekDay"
-            value={newEntry.weekDay}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label>
-          Mood Rating:
-          <input
-            type="text"
+        <label>Mood</label>
+        <select 
             name="moodRating"
-            value={newEntry.moodRating}
             onChange={handleInputChange}
-          />
-        </label>
+            >
+            <option disabled value="select-mood">Mood</option>
+            {moodOptions}    
+        </select>
+        <label>Weekday</label>
+            <select 
+                name="weekDay"
+                onChange={handleInputChange}
+                >
+                <option disabled value="select-weekday">Weekday</option>
+                {weekdayOptions}
+            </select>
         <button type="submit">Submit</button>
       </form>
           </>
