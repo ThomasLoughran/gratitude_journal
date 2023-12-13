@@ -37,5 +37,9 @@ MAPPING the ROUTE to grateful living
 * Mobile friendly botton that has a scroll function following the user as they navigate the page, so they can create a new journal entry from anywhere on the app
 
 ## Diagrams
-input wireframe and component diagram
-input methods list if needed
+### Wireframe Diagram
+![Wireframe top-half](wireframe_pt2.png)
+![Wireframe bottom-half](wireframe_pt3.png)
+
+## Components Diagram
+![Alt text](Components_Diagram.png)
