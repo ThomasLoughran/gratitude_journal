@@ -43,6 +43,7 @@ const NavBar = ({setJournalEntries}) => {
         >
           
           <MenuItem component={<Link to="/" />}> Home</MenuItem>
+          <MenuItem component={<Link to="/users/new" />}> Create Account</MenuItem>
           <MenuItem component={<Link to="/entries" />}> My Entries</MenuItem>
           <MenuItem component={<Link to="/entries/new" />}> Create New Journal Entry</MenuItem>
           <MenuItem component={<Link to="/sign-in" />}> Sign In</MenuItem>

@@ -6,6 +6,7 @@ import NewEntryForm from "../forms/NewEntryForm";
 import NavBar from "../components/NavBar";
 import AuthenticationForm from "../forms/AuthenticationForm";
 import EditEntryForm from "../forms/EditEntryForm";
+import NewUserForm from "../forms/NewUserForm";
 
 //exporting userContext so we can use it in our other files
 export const UserContext = createContext();
@@ -28,10 +29,10 @@ const JournalContainer = () => {
 //     }
 //   };
 
-  const handleCreateAccount = async (name, email) => {
+  const postNewAccount = async (user) => {
     try {
       // Implement create account logic
-      console.log('Creating account:', { name, email });
+      console.log('Creating account:',  user.name, user.emailAddress );
     } catch (error) {
       console.error('Error creating account:', error.message);
     }
@@ -166,12 +167,15 @@ const JournalContainer = () => {
         },
         {
           path: "/sign-in",
-          element: <AuthenticationForm authMode='sign-in' onSignIn={fetchUserByUserDTO} fetchAllEntriesByUserId={fetchAllEntriesByUserId}/>
+          element: <AuthenticationForm onSignIn={fetchUserByUserDTO}/>
+        },
+        {
+          path: "/users/new",
+          element: <NewUserForm submitForm={postNewAccount} />,
         },
         {
           path: "/",
           element: <> </>
-
         }
         
       ],
