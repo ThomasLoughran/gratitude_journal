@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewEntryForm = ({ postNewEntry }) => {
+const NewEntryForm = ({ postNewEntry, userId }) => {
 
     const [newEntry, setNewEntry] = useState(
         {
@@ -20,7 +20,7 @@ const NewEntryForm = ({ postNewEntry }) => {
                 moodRating: "",
             }
         );
-        console.log("Journal entry posted successfuly!");
+        console.log("Journal entry posted successfully!");
     }
     const handleInputChange = (event) => {
         const { name, value } = event.target;
