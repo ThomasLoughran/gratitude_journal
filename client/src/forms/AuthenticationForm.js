@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import { useContext } from 'react';
-import { UserContext } from '../containers/JournalContainer';
-
-      
 
 const AuthenticationForm = ({ onSignIn, onCreateAccount, fetchAllEntriesByUserId}) => {
   const [formData, setFormData] = useState({
     name: '',
     emailAddress: '',
   });
-  const {currentUser} = useContext(UserContext);
-  const [isCreateAccount, setIsCreateAccount] = useState(false); //need to pass down as prop
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,17 +16,13 @@ const AuthenticationForm = ({ onSignIn, onCreateAccount, fetchAllEntriesByUserId
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isCreateAccount) {
-      onCreateAccount(formData.name, formData.emailAddress);
-    } else {
-      onSignIn(formData);
-    }
+    onSignIn(formData);
   };
 
   return (
     <>
       <div>
-        <h2>{isCreateAccount ? 'Create Account' : 'Sign In'}</h2>
+        <h2>'Sign In'</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Name:
@@ -52,7 +42,7 @@ const AuthenticationForm = ({ onSignIn, onCreateAccount, fetchAllEntriesByUserId
               onChange={handleChange}
             />
           </label>
-          <button type="submit">{isCreateAccount ? 'Create Account' : 'Sign In'}</button>
+          <button type="submit">'Sign In'</button>
         </form>
       </div>
     </>
