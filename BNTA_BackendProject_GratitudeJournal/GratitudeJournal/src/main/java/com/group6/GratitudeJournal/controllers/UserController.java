@@ -35,7 +35,11 @@ public class UserController {
     @GetMapping(value = "/sign-in")  // - tested ✅
     public ResponseEntity<User> getUserByUserDTO(@RequestBody UserDTO userDTO){
         User foundUser = userService.getUserByUserDTO(userDTO);
-        return new ResponseEntity<>(foundUser, HttpStatus.OK);
+        if (foundUser== null) {
+            return new ResponseEntity<>(foundUser, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(foundUser, HttpStatus.OK);
+        }
     }
 
 //    create a user - tested ✅

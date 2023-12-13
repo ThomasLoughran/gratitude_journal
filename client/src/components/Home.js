@@ -3,14 +3,10 @@ import { Link, Outlet } from "react-router-dom";
 const Home = () => {
     return (
         <>
-            <nav>
-                <ul>
-                    <li><Link to="/entries">All entries</Link></li>
-                    <li><Link to="/entries/new">Create New Entry</Link></li>
-                    <li><Link to="/sign-in">Sign-in</Link></li>
-                </ul>
-            </nav>
-            <Outlet />
+            <article>
+            <h2>Welcome to The Gratitude Journal</h2>
+            <h3><strong>Open your journal, open your heart to gratitude!</strong></h3>
+            </article>
         </>
     );
 }
