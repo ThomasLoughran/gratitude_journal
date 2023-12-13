@@ -1,7 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../containers/JournalContainer";
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar';
+
+
 
 const NavBar = ({setJournalEntries}) => {
   const { currentUser } = useContext(UserContext) || {};
@@ -26,10 +28,13 @@ const NavBar = ({setJournalEntries}) => {
     setJournalEntries([]);
   };
 
+  // const {collapseSidebar} = collapsed()
+
   return (
     <>
       <Sidebar>
         <Menu
+       
           menuItemStyles={{
             button: {
               // the active class will be added automatically by react router
