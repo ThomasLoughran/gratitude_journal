@@ -60,8 +60,18 @@ const JournalContainer = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user)
     });
-    const data = await response.json();
-    console.log(data)
+    if (response.status === 200) {
+      const data = await response.json();
+      setCurrentUser(data);
+      console.log(data);
+    } else {
+      console.error("Invalid user details:", response.status);
+      alert("Invalid user details");
+    }
+    
+    
+    
+    
   }
 
 
