@@ -3,6 +3,7 @@ import JournalList from "../components/JournalList";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../components/Home";
 import NewEntryForm from "../forms/NewEntryForm";
+import NavBar from "../components/NavBar";
 
 //exporting userContext so we can use it in our other files
 export const UserContext = createContext();
@@ -102,10 +103,11 @@ const JournalContainer = () => {
 
   return (
     <>
+    <NavBar />
       <h1>Gratitude Journal</h1>
-      <UserContext.Provider value={{ currentUser: currentUser }}>
-      <RouterProvider router={journalEntryRoutes} />
-      </UserContext.Provider>
+      <UserContext.Provider value={{ currentUser: currentUser || {} }}>
+    <RouterProvider router={journalEntryRoutes} />
+    </UserContext.Provider>
     </>
   );
 };
