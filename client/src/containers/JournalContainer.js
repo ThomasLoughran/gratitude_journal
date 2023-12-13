@@ -3,6 +3,7 @@ import JournalList from "../components/JournalList";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../components/Home";
 import NewEntryForm from "../forms/NewEntryForm";
+import NavBar from "../components/NavBar";
 import AuthenticationForm from "../forms/AuthenticationForm";
 import EditEntryForm from "../forms/EditEntryForm";
 
@@ -115,7 +116,7 @@ const JournalContainer = () => {
         headers: { "Content-Type": "application/json" }
       }
     );
-      setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
+    setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
   };
 
   // useEffect(() => {
@@ -123,10 +124,14 @@ const JournalContainer = () => {
   //   fetchAllEntriesByUserId(2);
   // }, []);
 
+
   const journalEntryRoutes = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <>
+        <NavBar />
+        <Home />
+      </>,
       children: [
         {
           path: "/entries",
@@ -153,10 +158,9 @@ const JournalContainer = () => {
   return (
     <>
       <h1>Gratitude Journal</h1>
-      <UserContext.Provider value={{ user: currentUser }}>
-      <RouterProvider router={journalEntryRoutes} />
+      <UserContext.Provider value={{ currentUser: currentUser || {} }}>
+        <RouterProvider router={journalEntryRoutes} />
       </UserContext.Provider>
-      {/* {authMode === 'sign-in' || authMode === 'create-account' ? (<AuthenticationForm onSignIn={fetchUserById}/>)} */}
     </>
   );
 };

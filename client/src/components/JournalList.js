@@ -1,6 +1,5 @@
 import JournalEntry from './JournalEntry';
 
-
 const JournalList = ({ journalEntries, patchEntryById, deleteEntryById, selectEntryToEdit }) => {
 
     const mappedEntries = journalEntries.map((oneEntry) => {
@@ -13,7 +12,7 @@ const JournalList = ({ journalEntries, patchEntryById, deleteEntryById, selectEn
         />
 
     })
-
+    
     return (
         <>
             <h2>My Posts</h2>
