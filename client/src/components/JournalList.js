@@ -1,5 +1,6 @@
 import JournalEntry from './JournalEntry';
 
+
 const JournalList = ({ journalEntries, patchEntryById }) => {
 
     const mappedEntries = journalEntries.map((oneEntry) => {
@@ -7,7 +8,9 @@ const JournalList = ({ journalEntries, patchEntryById }) => {
             key={oneEntry.id}
             oneEntry={oneEntry}
             patchEntryById={patchEntryById}
+            deleteEntryById={deleteEntryById}
         />
+
     })
 
     return (

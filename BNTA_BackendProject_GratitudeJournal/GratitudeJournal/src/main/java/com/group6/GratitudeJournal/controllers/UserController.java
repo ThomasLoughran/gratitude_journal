@@ -31,6 +31,13 @@ public class UserController {
         return new ResponseEntity<>(foundUser, HttpStatus.OK);
     }
 
+//    Get user by username
+    @GetMapping(value = "/sign-in")  // - tested ✅
+    public ResponseEntity<User> getUserByUserDTO(@RequestBody UserDTO userDTO){
+        User foundUser = userService.getUserByUserDTO(userDTO);
+        return new ResponseEntity<>(foundUser, HttpStatus.OK);
+    }
+
 //    create a user - tested ✅
     @PostMapping
     public ResponseEntity<User> addNewUser(@RequestBody User user){

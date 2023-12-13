@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const NewEntryForm = ({ entry, submitForm }) => {
+const NewEntryForm = ({ submitForm }) => {
 
   const location = useLocation();
   const oneEntry = location.state;
