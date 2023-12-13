@@ -12,12 +12,12 @@ const JournalContainer = () => {
   const [journalEntries, setJournalEntries] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
-   // Set user function
-   const setUser = (user) => {
+  // Set user function
+  const setUser = (user) => {
     setCurrentUser(user);
   };
 
-    const fetchUserById = async (id) => {
+  const fetchUserById = async (id) => {
     try {
       const response = await fetch(`http://localhost:8080/users/${id}`);
       const data = await response.json();
@@ -68,14 +68,14 @@ const JournalContainer = () => {
         headers: { "Content-Type": "application/json" }
       }
     );
-      setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
+    setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
   };
 
-//   const newPostObject = {
-//     content: "This is a test",
-//     weekDay: "FRIDAY",
-//     moodRating: "REALLYGOOD",
-//   };
+  //   const newPostObject = {
+  //     content: "This is a test",
+  //     weekDay: "FRIDAY",
+  //     moodRating: "REALLYGOOD",
+  //   };
 
   useEffect(() => {
     fetchUserById(1);
@@ -86,7 +86,10 @@ const JournalContainer = () => {
   const journalEntryRoutes = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <>
+        <NavBar />
+        <Home />
+      </>,
       children: [
         {
           path: "/entries",
@@ -103,11 +106,10 @@ const JournalContainer = () => {
 
   return (
     <>
-    <NavBar />
       <h1>Gratitude Journal</h1>
       <UserContext.Provider value={{ currentUser: currentUser || {} }}>
-    <RouterProvider router={journalEntryRoutes} />
-    </UserContext.Provider>
+        <RouterProvider router={journalEntryRoutes} />
+      </UserContext.Provider>
     </>
   );
 };

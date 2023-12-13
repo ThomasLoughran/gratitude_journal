@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../containers/JournalContainer";
 
@@ -10,35 +10,49 @@ const NavBar = () => {
   }
 
   const handleLogout = () => {
-    // finish this bit
+    alert("You have successfully signed out!")
     console.log("Logout logic");
   };
 
   return (
-    <nav>
-      <div className="navbar-container">
-        <div className="logo">
-          <Link to="/">Gratitude Journal</Link>
-        </div>
-        <div className="menu">
-          <input type="checkbox" id="menu-toggle" />
-          <label htmlFor="menu-toggle">&#9776; Menu</label>
-          <ul>
-            <li>
-              <Link to="/entries">All entries</Link>
-            </li>
-            <li>
-              <Link to="/entries/new">Create New Entry</Link>
-            </li>
-            {currentUser && (
+    <>
+      <nav>
+        <div className="navbar-container">
+
+          <div className="logo">
+            <Link to="/">Gratitude Journal</Link>
+          </div>
+
+          <div className="menu">
+            <input type="checkbox" id="menu-toggle" />
+            <label htmlFor="menu-toggle">&#9776; Menu</label>
+
+            <ul>
               <li>
-                <button onClick={handleLogout}>Logout</button>
+                <Link to="/">Home</Link>
               </li>
-            )}
-          </ul>
+
+              <li>
+                <Link to="/entries">My Entries</Link>
+              </li>
+
+              <li>
+                <Link to="/entries/new">Create New Entry</Link>
+              </li>
+
+              {currentUser && (
+                <li>
+                  <button onClick={handleLogout}>
+                    <Link to="/">Sign Out</Link>
+                  </button>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+      <Outlet />
+    </>
   );
 };
 
