@@ -5,6 +5,7 @@ import { UserContext } from "../containers/JournalContainer";
 const NavBar = () => {
   const { currentUser } = useContext(UserContext) || {};
 
+
   if (!currentUser) {
     return null;
   }
@@ -24,7 +25,6 @@ const NavBar = () => {
           </div>
 
           <div className="menu">
-            <input type="checkbox" id="menu-toggle" />
             <label htmlFor="menu-toggle">&#9776; Menu</label>
 
             <ul>
