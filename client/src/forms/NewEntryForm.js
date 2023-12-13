@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NewEntryForm = ({ postNewEntry }) => {
+const NewEntryForm = ({ postNewEntry, userId }) => {
 
     const [newEntry, setNewEntry] = useState(
         {
