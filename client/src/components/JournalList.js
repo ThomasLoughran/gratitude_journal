@@ -1,7 +1,7 @@
 import JournalEntry from './JournalEntry';
 
 
-const JournalList = ({ journalEntries, patchEntryById }) => {
+const JournalList = ({ journalEntries, patchEntryById, deleteEntryById, selectEntryToEdit }) => {
 
     const mappedEntries = journalEntries.map((oneEntry) => {
         return <JournalEntry
@@ -9,6 +9,7 @@ const JournalList = ({ journalEntries, patchEntryById }) => {
             oneEntry={oneEntry}
             patchEntryById={patchEntryById}
             deleteEntryById={deleteEntryById}
+            selectEntryToEdit={selectEntryToEdit}
         />
 
     })
