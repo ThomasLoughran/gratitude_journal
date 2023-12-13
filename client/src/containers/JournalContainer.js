@@ -118,17 +118,10 @@ const JournalContainer = () => {
       setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
   };
 
-  //   const newPostObject = {
-//     content: "This is a test",
-//     weekDay: "FRIDAY",
-//     moodRating: "REALLYGOOD",
-//   };
-
-  useEffect(() => {
-    fetchUserById(2);
-    fetchAllEntriesByUserId(2);
-    // postNewEntry(newPostObject, 2);
-  }, []);
+  // useEffect(() => {
+  //   fetchUserById(2);
+  //   fetchAllEntriesByUserId(2);
+  // }, []);
 
   const journalEntryRoutes = createBrowserRouter([
     {
