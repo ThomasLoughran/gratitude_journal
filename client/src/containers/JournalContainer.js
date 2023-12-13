@@ -177,7 +177,7 @@ const JournalContainer = () => {
         },
         {
           path: "/sign-in",
-          element: <AuthenticationForm onSignIn={fetchUserByUserDTO}/>
+          element: <AuthenticationForm submitForm={fetchUserByUserDTO}/>
         },
         {
           path: "/users/new",
