@@ -119,10 +119,10 @@ const JournalContainer = () => {
     setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
   };
 
-  // useEffect(() => {
-  //   fetchUserById(2);
-  //   fetchAllEntriesByUserId(2);
-  // }, []);
+  useEffect(() => {
+    fetchUserById(2); //Remember to take this out after
+    fetchAllEntriesByUserId(2);
+  }, []);
 
 
   const journalEntryRoutes = createBrowserRouter([
@@ -150,6 +150,11 @@ const JournalContainer = () => {
           path: "/sign-in",
           element: <AuthenticationForm authMode='sign-in' onSignIn={fetchUserById} fetchAllEntriesByUserId={fetchAllEntriesByUserId}/>
         },
+        {
+          path: "/",
+          element: <> </>
+
+        }
         
       ],
     },
