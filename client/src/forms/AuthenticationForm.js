@@ -7,7 +7,7 @@ import { UserContext } from '../containers/JournalContainer';
 const AuthenticationForm = ({ onSignIn, onCreateAccount, fetchAllEntriesByUserId}) => {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    emailAddress: '',
   });
   const {currentUser} = useContext(UserContext);
   const [isCreateAccount, setIsCreateAccount] = useState(false); //need to pass down as prop
@@ -23,9 +23,9 @@ const AuthenticationForm = ({ onSignIn, onCreateAccount, fetchAllEntriesByUserId
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isCreateAccount) {
-      onCreateAccount(formData.name, formData.email);
+      onCreateAccount(formData.name, formData.emailAddress);
     } else {
-      onSignIn(formData.name, formData.email);
+      onSignIn(formData);
     }
   };
 
@@ -47,8 +47,8 @@ const AuthenticationForm = ({ onSignIn, onCreateAccount, fetchAllEntriesByUserId
             Email:
             <input
               type="email"
-              name="email"
-              value={formData.email}
+              name="emailAddress"
+              value={formData.emailAddress}
               onChange={handleChange}
             />
           </label>

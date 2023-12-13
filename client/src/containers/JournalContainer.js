@@ -64,13 +64,6 @@ const JournalContainer = () => {
     console.log(data)
   }
 
-  useEffect(() => {
-    fetchUserByUserDTO({
-      name: "Tom",
-      emailAddress: "mail@tommcl.co.uk"
-  })
-  }, []);
-
 
   const fetchAllEntriesByUserId = async (id) => {
     try {
@@ -166,7 +159,7 @@ const JournalContainer = () => {
         },
         {
           path: "/sign-in",
-          element: <AuthenticationForm authMode='sign-in' onSignIn={fetchUserById} fetchAllEntriesByUserId={fetchAllEntriesByUserId}/>
+          element: <AuthenticationForm authMode='sign-in' onSignIn={fetchUserByUserDTO} fetchAllEntriesByUserId={fetchAllEntriesByUserId}/>
         },
         {
           path: "/",
