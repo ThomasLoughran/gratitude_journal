@@ -2,7 +2,13 @@ import { Link, Outlet } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-
+//import {HomeOutlinedIcon} from "@mui/material"
+import {FiHome} from "react-icons/fi";
+import {RxHamburgerMenu} from "react-icons/rx";
+import {FaPlus} from "react-icons/fa";
+import{IoIosJournal} from "react-icons/io";
+import { CiLogin } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
 
 
 
@@ -24,7 +30,9 @@ const NavBar = ({ setJournalEntries }) => {
     if (currentUser === null) {
       return <> </>
     } else {
-      return <MenuItem component={<Link to="/" onClick={handleLogout} />}>Sign Out</MenuItem>
+      return <MenuItem 
+      icon = {<CiLogout/>}
+      component={<Link to="/" onClick={handleLogout} />}>Sign Out</MenuItem>
     }
   }
 
@@ -40,7 +48,7 @@ const NavBar = ({ setJournalEntries }) => {
   return (
     <>
       <Sidebar collapsed={collapsed}>
-        <button onClick ={handleToggleSidebar}>Toggle</button>
+        <RxHamburgerMenu onClick ={handleToggleSidebar}></RxHamburgerMenu>
         <Menu 
 
           menuItemStyles={{
@@ -54,11 +62,17 @@ const NavBar = ({ setJournalEntries }) => {
             },
           }}
         >
-
-          <MenuItem component={<Link to="/" />}> Home</MenuItem>
-          <MenuItem component={<Link to="/entries" />}> My Entries</MenuItem>
-          <MenuItem component={<Link to="/entries/new" />}> Create New Journal Entry</MenuItem>
-          <MenuItem component={<Link to="/sign-in" />}> Sign In</MenuItem>
+          
+          <MenuItem icon= {<FiHome/>}>Home</MenuItem>
+          <MenuItem 
+          icon = {<IoIosJournal/>}
+          component={<Link to="/entries" />}> My Entries</MenuItem>
+          <MenuItem 
+          icon = {<FaPlus/>}
+           component ={<Link to="/entries/new" />}> Create New Journal Entry</MenuItem>
+          <MenuItem 
+          icon = {<CiLogin/>}
+          component={<Link to="/sign-in" />}> Sign In</MenuItem>
           {renderSignOut()}
 
         </Menu>
