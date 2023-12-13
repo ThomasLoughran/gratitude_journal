@@ -40,7 +40,8 @@ const NavBar = ({ setJournalEntries }) => {
   return (
     <>
       <Sidebar collapsed={collapsed}>
-        <Menu
+        <button onClick ={handleToggleSidebar}>Toggle</button>
+        <Menu 
 
           menuItemStyles={{
             button: {
