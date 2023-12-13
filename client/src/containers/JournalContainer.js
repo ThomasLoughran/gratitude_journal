@@ -97,7 +97,6 @@ const JournalContainer = () => {
 
 useEffect(() => {
     if (currentUser && currentUser.id) {
-      fetchUserById(currentUser.id);
       fetchAllEntriesByUserId(currentUser.id);
     }
   }, [currentUser]);
