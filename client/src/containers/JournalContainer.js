@@ -48,11 +48,29 @@ const JournalContainer = () => {
       const data = await response.json();
       setUser(data);
       fetchAllEntriesByUserId(data.id);
-      console.log(data);
+      console.log("Grabbed user by username: ",data);
     } catch (error) {
       console.error("Error fetching user:", error);
     }
   };
+
+  const fetchUserByUserDTO = async (user) => {
+    const response = await fetch(`http://localhost:8080/users/sign-in`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user)
+    });
+    const data = await response.json();
+    console.log(data)
+  }
+
+  useEffect(() => {
+    fetchUserByUserDTO({
+      name: "Tom",
+      emailAddress: "mail@tommcl.co.uk"
+  })
+  }, []);
+
 
   const fetchAllEntriesByUserId = async (id) => {
     try {
