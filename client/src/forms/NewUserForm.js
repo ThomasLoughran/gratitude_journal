@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AuthenticationForm = ({ submitForm }) => {
+const NewUserForm = ({ submitForm}) => {
   const [formData, setFormData] = useState({
     name: '',
     emailAddress: '',
@@ -17,12 +17,16 @@ const AuthenticationForm = ({ submitForm }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     submitForm(formData);
+    setFormData({
+      name: '',
+      emailAddress: '',
+    })
   };
 
   return (
     <>
       <div>
-        <h2>Sign In</h2>
+        <h2>Create New Account</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Name:
@@ -42,11 +46,11 @@ const AuthenticationForm = ({ submitForm }) => {
               onChange={handleChange}
             />
           </label>
-          <button type="submit">Sign In</button>
+          <button type="submit">Create Account</button>
         </form>
       </div>
     </>
   );
 };
 
-export default AuthenticationForm;
+export default NewUserForm;

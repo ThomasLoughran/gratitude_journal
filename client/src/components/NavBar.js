@@ -1,9 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../containers/JournalContainer";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
-const NavBar = () => {
+const NavBar = ({setJournalEntries}) => {
   const { currentUser } = useContext(UserContext) || {};
 
 
@@ -11,9 +11,19 @@ const NavBar = () => {
     return null;
   }
 
+ const renderSignOut = () =>{
+    if(currentUser === null){
+      return <> </>
+    } else{
+     return<MenuItem component={<Link to ="/" onClick={handleLogout}/>}>Sign Out</MenuItem>
+    }
+  }
+
+
   const handleLogout = () => {
     alert("You have successfully signed out!")
     console.log("Logout logic");
+    setJournalEntries([]);
   };
 
   return (
@@ -31,28 +41,23 @@ const NavBar = () => {
             },
           }}
         >
+          
           <MenuItem component={<Link to="/" />}> Home</MenuItem>
+          <MenuItem component={<Link to="/users/new" />}> Create Account</MenuItem>
           <MenuItem component={<Link to="/entries" />}> My Entries</MenuItem>
           <MenuItem component={<Link to="/entries/new" />}> Create New Journal Entry</MenuItem>
-          <MenuItem
-            component={<Link to="/entries/new">
-                currentUser && (
-                  <li>
-                    <button onClick={handleLogout}>
-                      <Link to="/">Sign Out</Link>
-                    </button>
-                  </li>
-                )
-            </Link>}>
+          <MenuItem component={<Link to="/sign-in" />}> Sign In</MenuItem>
+          {renderSignOut()}
 
-          </MenuItem>
         </Menu>
       </Sidebar>
+      <Outlet/>
     </>
   );
 }
 
 export default NavBar;
+
 //   return (
 //     <>
 //       <nav className="navbar-container">
