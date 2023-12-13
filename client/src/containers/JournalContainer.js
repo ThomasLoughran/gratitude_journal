@@ -125,7 +125,7 @@ const JournalContainer = () => {
 //   };
 
   useEffect(() => {
-    fetchUserById(1);
+    fetchUserById(2);
     fetchAllEntriesByUserId(2);
     // postNewEntry(newPostObject, 2);
   }, []);
