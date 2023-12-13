@@ -27,6 +27,10 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
+    public User getUserByUserDTO(UserDTO userDTO){
+        return userRepository.findByNameAndEmailAddress(userDTO.getName(), userDTO.getEmailAddress());
+    }
+
     public User createUser(User user){
         return userRepository.save(user);
     }
