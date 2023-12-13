@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
-const NewEntryForm = ({ postNewEntry, userId }) => {
+const NewEntryForm = ({ submitForm }) => {
 
+  const location = useLocation();
+  const oneEntry = location.state;
+  console.log(oneEntry);
+  
     const [newEntry, setNewEntry] = useState(
         {
             content: "",
@@ -12,7 +17,7 @@ const NewEntryForm = ({ postNewEntry, userId }) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        postNewEntry(newEntry, 2); // remove dis line in d future
+        submitForm(newEntry, 2); // remove dis line in d future
         setNewEntry(
             {
                 content: "",

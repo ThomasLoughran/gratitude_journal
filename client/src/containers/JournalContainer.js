@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../components/Home";
 import NewEntryForm from "../forms/NewEntryForm";
 import AuthenticationForm from "../forms/AuthenticationForm";
+import EditEntryForm from "../forms/EditEntryForm";
 
 //exporting userContext so we can use it in our other files
 export const UserContext = createContext();
@@ -11,7 +12,12 @@ export const UserContext = createContext();
 const JournalContainer = () => {
   const [journalEntries, setJournalEntries] = useState([]);
   const [currentUser, setCurrentUser] = useState({}); //changed from null coz wasn't rendering
+  const [entryToEdit, setEntryToEdit] = useState(null);
   // const [authMode, setAuthMode] = useState('sign-in');
+
+  const selectEntryToEdit = (entry) => {
+    setEntryToEdit(entry);
+  }
 
 //   const handleSignIn = async (name, email) => {
 //     try {
@@ -30,12 +36,12 @@ const JournalContainer = () => {
     }
   };
 
-   // Set user function
-   const setUser = (user) => {
+  // Set user function
+  const setUser = (user) => {
     setCurrentUser(user);
   };
 
-    const fetchUserById = async (id) => {
+  const fetchUserById = async (id) => {
     try {
       const response = await fetch(`http://localhost:8080/users/${id}`);
       const data = await response.json();
@@ -80,6 +86,27 @@ const JournalContainer = () => {
 
   };
 
+  const patchEntryById = async (entry) => {
+
+    const entryDTO = {
+      content: entry.content,
+      weekDay: entry.weekDay,
+      moodRating: entry.moodRating
+    }
+
+    const response = await fetch(`http://localhost:8080/journal-entries/${entry.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(entryDTO)
+    });
+
+    const entryIndex = journalEntries.indexOf(entry);
+    const updatedJournalEntries = journalEntries;
+    updatedJournalEntries.splice(entryIndex, 1, entry);
+    setJournalEntries(updatedJournalEntries);
+  };
+
+
   const deleteEntryById = async (entryId) => {
     const response = await fetch(
       `http://localhost:8080/journal-entries/${entryId}`,
@@ -91,17 +118,10 @@ const JournalContainer = () => {
       setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
   };
 
-//   const newPostObject = {
-//     content: "This is a test",
-//     weekDay: "FRIDAY",
-//     moodRating: "REALLYGOOD",
-//   };
-
-useEffect(() => {
-    if (currentUser && currentUser.id) {
-      fetchAllEntriesByUserId(currentUser.id);
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  //   fetchUserById(2);
+  //   fetchAllEntriesByUserId(2);
+  // }, []);
 
   const journalEntryRoutes = createBrowserRouter([
     {
@@ -110,14 +130,17 @@ useEffect(() => {
       children: [
         {
           path: "/entries",
-          element: <JournalList journalEntries={journalEntries} deleteEntryById={deleteEntryById} />,
+          element: <JournalList journalEntries={journalEntries} deleteEntryById={deleteEntryById} selectEntryToEdit={selectEntryToEdit}/>,
         },
 
         {
           path: "/entries/new",
-          element: <NewEntryForm postNewEntry={postNewEntry} userId={currentUser.id}/>,
+          element: <NewEntryForm submitForm={postNewEntry} />,
         },
-
+        {
+          path: "/entries/:id/edit",
+          element: <EditEntryForm submitForm={patchEntryById} entryToEdit={entryToEdit}/>,
+        },
         {
           path: "/sign-in",
           element: <AuthenticationForm authMode='sign-in' onSignIn={fetchUserById} fetchAllEntriesByUserId={fetchAllEntriesByUserId}/>
@@ -130,7 +153,7 @@ useEffect(() => {
   return (
     <>
       <h1>Gratitude Journal</h1>
-      <UserContext.Provider value={{ currentUser: currentUser }}>
+      <UserContext.Provider value={{ user: currentUser }}>
       <RouterProvider router={journalEntryRoutes} />
       </UserContext.Provider>
       {/* {authMode === 'sign-in' || authMode === 'create-account' ? (<AuthenticationForm onSignIn={fetchUserById}/>)} */}
