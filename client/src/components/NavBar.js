@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "../containers/JournalContainer";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
-const NavBar = () => {
+const NavBar = ({setJournalEntries}) => {
   const { currentUser } = useContext(UserContext) || {};
 
 
@@ -12,21 +12,18 @@ const NavBar = () => {
   }
 
  const renderSignOut = () =>{
-    // console.log(currentUser,"heeehbkn");
     if(currentUser === null){
       return <> </>
     } else{
-     return<MenuItem component={<Link to="/"/>}>Sign Out</MenuItem>
+     return<MenuItem component={<Link to ="/" onClick={handleLogout}/>}>Sign Out</MenuItem>
     }
   }
 
-// useEffect (()=>{
-//     renderSignOut();
-//   },[currentUser])
 
   const handleLogout = () => {
     alert("You have successfully signed out!")
     console.log("Logout logic");
+    setJournalEntries([]);
   };
 
   return (

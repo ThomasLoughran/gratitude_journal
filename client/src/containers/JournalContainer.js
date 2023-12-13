@@ -12,7 +12,7 @@ export const UserContext = createContext();
 
 const JournalContainer = () => {
   const [journalEntries, setJournalEntries] = useState([]);
-  const [currentUser, setCurrentUser] = useState({}); //changed from null coz wasn't rendering
+  const [currentUser, setCurrentUser] = useState(null); //changed from null coz wasn't rendering
   const [entryToEdit, setEntryToEdit] = useState(null);
   // const [authMode, setAuthMode] = useState('sign-in');
 
@@ -119,17 +119,17 @@ const JournalContainer = () => {
     setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
   };
 
-  useEffect(() => {
-    fetchUserById(2); //Remember to take this out after
-    fetchAllEntriesByUserId(2);
-  }, []);
+  // useEffect(() => {
+  //   fetchUserById(2); //Remember to take this out after
+  //   fetchAllEntriesByUserId(2);
+  // }, []);
 
 
   const journalEntryRoutes = createBrowserRouter([
     {
       path: "/",
       element: <>
-        <NavBar />
+        <NavBar setJournalEntries = {setJournalEntries}/>
         <Home />
       </>,
       children: [
