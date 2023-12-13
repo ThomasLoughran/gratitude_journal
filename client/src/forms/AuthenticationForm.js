@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../containers/JournalContainer';
 
-const AuthenticationForm = ({ onSignIn, onCreateAccount, userId}) => {
+      
+
+const AuthenticationForm = ({ onSignIn, onCreateAccount, fetchAllEntriesByUserId}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
   });
-
+  const {currentUser} = useContext(UserContext);
   const [isCreateAccount, setIsCreateAccount] = useState(false); //need to pass down as prop
 
   const handleChange = (e) => {

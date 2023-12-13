@@ -11,7 +11,7 @@ export const UserContext = createContext();
 const JournalContainer = () => {
   const [journalEntries, setJournalEntries] = useState([]);
   const [currentUser, setCurrentUser] = useState({}); //changed from null coz wasn't rendering
-  const [authMode, setAuthMode] = useState('sign-in');
+  // const [authMode, setAuthMode] = useState('sign-in');
 
 //   const handleSignIn = async (name, email) => {
 //     try {
@@ -40,6 +40,7 @@ const JournalContainer = () => {
       const response = await fetch(`http://localhost:8080/users/${id}`);
       const data = await response.json();
       setUser(data);
+      fetchAllEntriesByUserId(data.id);
       console.log(data);
     } catch (error) {
       console.error("Error fetching user:", error);
@@ -52,6 +53,7 @@ const JournalContainer = () => {
         `http://localhost:8080/journal-entries/${id}/all`
       );
       const data = await response.json();
+      console.log(data);
       setJournalEntries(data);
     } catch (error) {
       console.error("error fetching entries", error);
@@ -115,6 +117,12 @@ useEffect(() => {
           path: "/entries/new",
           element: <NewEntryForm postNewEntry={postNewEntry} userId={currentUser.id}/>,
         },
+
+        {
+          path: "/sign-in",
+          element: <AuthenticationForm authMode='sign-in' onSignIn={fetchUserById} fetchAllEntriesByUserId={fetchAllEntriesByUserId}/>
+        },
+        
       ],
     },
   ]);
@@ -125,19 +133,7 @@ useEffect(() => {
       <UserContext.Provider value={{ currentUser: currentUser }}>
       <RouterProvider router={journalEntryRoutes} />
       </UserContext.Provider>
-      {authMode === 'sign-in' ? (
-        <AuthenticationForm
-          onSignIn={fetchUserById}
-          onCreateAccount={() => setAuthMode('create-account')}
-          userId={currentUser.id}
-        />
-      ) : (
-        <AuthenticationForm
-          onSignIn={() => setAuthMode('sign-in')}
-          onCreateAccount={handleCreateAccount}
-          userId={currentUser.id}
-        />
-      )}
+      {/* {authMode === 'sign-in' || authMode === 'create-account' ? (<AuthenticationForm onSignIn={fetchUserById}/>)} */}
     </>
   );
 };

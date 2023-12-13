@@ -20,7 +20,7 @@ const NewEntryForm = ({ postNewEntry, userId }) => {
                 moodRating: "",
             }
         );
-        console.log("Journal entry posted successfuly!");
+        console.log("Journal entry posted successfully!");
     }
     const handleInputChange = (event) => {
         const { name, value } = event.target;
