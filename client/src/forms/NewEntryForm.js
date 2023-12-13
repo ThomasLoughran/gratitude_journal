@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
-const NewEntryForm = ({ postNewEntry }) => {
+const NewEntryForm = ({ submitForm }) => {
 
+  const location = useLocation();
+  const oneEntry = location.state;
+  console.log(oneEntry);
+  
     const [newEntry, setNewEntry] = useState(
         {
             content: "",
@@ -12,7 +17,7 @@ const NewEntryForm = ({ postNewEntry }) => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        postNewEntry(newEntry, 2); // remove dis line in d future
+        submitForm(newEntry, 2); // remove dis line in d future
         setNewEntry(
             {
                 content: "",
@@ -20,7 +25,7 @@ const NewEntryForm = ({ postNewEntry }) => {
                 moodRating: "",
             }
         );
-        console.log("Journal entry posted successfuly!");
+        console.log("Journal entry posted successfully!");
     }
     const handleInputChange = (event) => {
         const { name, value } = event.target;
