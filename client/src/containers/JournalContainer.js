@@ -63,15 +63,12 @@ const JournalContainer = () => {
     if (response.status === 200) {
       const data = await response.json();
       setCurrentUser(data);
+      fetchAllEntriesByUserId(data.id);
       console.log(data);
     } else {
       console.error("Invalid user details:", response.status);
       alert("Invalid user details");
     }
-    
-    
-    
-    
   }
 
 
