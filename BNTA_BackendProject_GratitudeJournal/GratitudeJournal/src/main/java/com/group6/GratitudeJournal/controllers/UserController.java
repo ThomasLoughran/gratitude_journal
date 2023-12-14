@@ -32,7 +32,7 @@ public class UserController {
     }
 
 //    Get user by username
-    @GetMapping(value = "/sign-in")  // - tested ✅
+    @PutMapping(value = "/sign-in")  // - tested ✅
     public ResponseEntity<User> getUserByUserDTO(@RequestBody UserDTO userDTO){
         User foundUser = userService.getUserByUserDTO(userDTO);
         if (foundUser== null) {

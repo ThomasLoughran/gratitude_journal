@@ -6,6 +6,7 @@ import NewEntryForm from "../forms/NewEntryForm";
 import NavBar from "../components/NavBar";
 import AuthenticationForm from "../forms/AuthenticationForm";
 import EditEntryForm from "../forms/EditEntryForm";
+import NewUserForm from "../forms/NewUserForm";
 
 //exporting userContext so we can use it in our other files
 export const UserContext = createContext();
@@ -28,12 +29,22 @@ const JournalContainer = () => {
 //     }
 //   };
 
-  const handleCreateAccount = async (name, email) => {
+  const postNewAccount = async (user) => {
     try {
-      // Implement create account logic
-      console.log('Creating account:', { name, email });
+      const response = await fetch(`http://localhost:8080/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      });
+
+      if (response.status === 201) {
+        const postedUser = await response.json();
+        setCurrentUser(postedUser);
+      } else {
+        console.error("Failed create new entry. Status code:", response.status);
+      }
     } catch (error) {
-      console.error('Error creating account:', error.message);
+      console.error("Error posting new user:", error);
     }
   };
 
@@ -48,11 +59,29 @@ const JournalContainer = () => {
       const data = await response.json();
       setUser(data);
       fetchAllEntriesByUserId(data.id);
-      console.log(data);
+      console.log("Grabbed user by username: ",data);
     } catch (error) {
       console.error("Error fetching user:", error);
     }
   };
+
+  const fetchUserByUserDTO = async (user) => {
+    const response = await fetch(`http://localhost:8080/users/sign-in`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user)
+    });
+    if (response.status === 200) {
+      const data = await response.json();
+      setCurrentUser(data);
+      fetchAllEntriesByUserId(data.id);
+      console.log(data);
+    } else {
+      console.error("Invalid user details:", response.status);
+      alert("Invalid user details");
+    }
+  }
+
 
   const fetchAllEntriesByUserId = async (id) => {
     try {
@@ -148,12 +177,15 @@ const JournalContainer = () => {
         },
         {
           path: "/sign-in",
-          element: <AuthenticationForm authMode='sign-in' onSignIn={fetchUserById} fetchAllEntriesByUserId={fetchAllEntriesByUserId}/>
+          element: <AuthenticationForm submitForm={fetchUserByUserDTO}/>
+        },
+        {
+          path: "/users/new",
+          element: <NewUserForm submitForm={postNewAccount} />,
         },
         {
           path: "/",
           element: <> </>
-
         }
         
       ],

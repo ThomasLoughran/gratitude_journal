@@ -63,7 +63,6 @@ const NavBar = ({ setJournalEntries }) => {
             },
           }}
         >
-
           <MenuItem icon={<FiHome />}>Home</MenuItem>
 
           <MenuItem
@@ -82,6 +81,11 @@ const NavBar = ({ setJournalEntries }) => {
             icon={<CiLogin />}
             component={<Link to="/sign-in" />}>
             Sign In
+          </MenuItem>
+
+          <MenuItem 
+            component={<Link to="/users/new" />}> 
+              Create Account
           </MenuItem>
           {renderSignOut()}
 
