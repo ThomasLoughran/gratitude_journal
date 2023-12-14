@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
-const EditEntryForm = ({ submitForm, entryToEdit }) => {
+const EditEntryForm = ({ submitForm, entryToEdit, currentUser }) => {
 
   const {id} = useParams();
   
@@ -35,7 +35,7 @@ const EditEntryForm = ({ submitForm, entryToEdit }) => {
         if (newEntry.content === "" || newEntry.moodRating=== "" || newEntry.weekDay === ""){
           return alert("Incomplete form")
         } else {
-          submitForm(newEntry, 2); // remove dis line in d future
+          submitForm(newEntry, currentUser.id); // remove dis line in d future
           setNewEntry(
               {
                   content: "",

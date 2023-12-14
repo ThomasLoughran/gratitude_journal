@@ -33,7 +33,7 @@ const NewEntryForm = ({ submitForm, currentUser}) => {
         {
           return alert('Not signed in!')
         } else {
-          submitForm(newEntry,currentUser.id); // remove dis line in d future
+          submitForm(newEntry,currentUser.id); 
           setNewEntry(
               {
                   content: "",
