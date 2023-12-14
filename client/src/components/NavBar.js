@@ -24,7 +24,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
     if (currentUser === null) {
       return <> </>
     } else {
-      return (
+         return (
         <>
           <MenuItem
             icon={<CiLogout />}
@@ -34,7 +34,9 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
           </MenuItem>
           <MenuItem
             icon={<RiDeleteBin5Fill />}
-            onClick={() => handleDeleteAccount(currentUser.id)}
+            onClick= {() =>{
+              handleDeleteAccount (currentUser.id)
+             }}
           >
             Delete Account
           </MenuItem>
@@ -42,6 +44,10 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
       );
     }
   }
+
+  const renderDeleteAccount = (() =>{
+   handleDeleteAccount (currentUser.id)
+  });
 
   const handleLogout = () => {
     alert("You have successfully signed out!");
@@ -67,7 +73,9 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
     };
   }, [collapsed]);
 
+
   return (
+   <>
     <section>
       {currentUser && (
       <Sidebar
@@ -126,7 +134,9 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
 
         </Menu>
       </Sidebar>
-    </>
+      )}
+      </section>
+      </>
   );
 }
 

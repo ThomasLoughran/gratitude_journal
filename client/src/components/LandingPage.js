@@ -2,7 +2,7 @@ import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
 import logo from "../Images/logo.png";
 
-const LandingPage = (setCurrentUser, setJournalEntries) => {
+const LandingPage = ({setCurrentUser, setJournalEntries, handleDeleteAccount}) => {
     return ( 
         <>  
         <section className="title">
@@ -13,7 +13,7 @@ const LandingPage = (setCurrentUser, setJournalEntries) => {
           <section className="nav-bar">
           
 
-            <NavBar setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser}/>
+            <NavBar setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser} handleDeleteAccount={handleDeleteAccount}/>
           </section>
           <section className="router-body">
             <Outlet />

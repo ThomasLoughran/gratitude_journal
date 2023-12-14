@@ -178,7 +178,7 @@ const JournalContainer = () => {
   const journalEntryRoutes = createBrowserRouter([
     {
       path: "/",
-      element: <LandingPage setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser} />,
+      element: <LandingPage setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser} handleDeleteAccount= {handleDeleteAccount}/>,
       children: [
         {
           path: "/entries",
