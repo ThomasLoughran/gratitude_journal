@@ -169,7 +169,7 @@ const JournalContainer = () => {
 
         {
           path: "/entries/new",
-          element: <NewEntryForm submitForm={postNewEntry} />,
+          element: <NewEntryForm submitForm={postNewEntry} currentUser= {currentUser}/>,
         },
         {
           path: "/entries/:id/edit",

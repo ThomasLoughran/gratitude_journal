@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const NewEntryForm = ({ submitForm }) => {
+const NewEntryForm = ({ submitForm, currentUser}) => {
 
   const location = useLocation();
   const oneEntry = location.state;
@@ -29,8 +29,11 @@ const NewEntryForm = ({ submitForm }) => {
         event.preventDefault();
         if (newEntry.content === "" || newEntry.moodRating=== "" || newEntry.weekDay === ""){
           return alert("Incomplete form")
+        } else if(currentUser === null)
+        {
+          return alert('Not signed in!')
         } else {
-          submitForm(newEntry, 2); // remove dis line in d future
+          submitForm(newEntry,currentUser.id); // remove dis line in d future
           setNewEntry(
               {
                   content: "",
