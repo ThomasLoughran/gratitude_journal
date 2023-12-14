@@ -3,7 +3,6 @@ import JournalList from "../components/JournalList";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "../components/Home";
 import NewEntryForm from "../forms/NewEntryForm";
-import NavBar from "../components/NavBar";
 import AuthenticationForm from "../forms/AuthenticationForm";
 import EditEntryForm from "../forms/EditEntryForm";
 import NewUserForm from "../forms/NewUserForm";

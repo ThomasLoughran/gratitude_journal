@@ -6,7 +6,6 @@ const LandingPage = (setCurrentUser, setJournalEntries) => {
     return ( 
         <>  
         <section className="title">
-          <h1 id="main-title">Gratitude Journal</h1>
            <img src={logo} className="logo"/>
         </section>
         
