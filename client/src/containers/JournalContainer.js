@@ -19,15 +19,15 @@ const JournalContainer = () => {
 
   const selectEntryToEdit = (entry) => {
     setEntryToEdit(entry);
-  }
+  };
 
-//   const handleSignIn = async (name, email) => {
-//     try {
-//       console.log('Signing in:', { name, email });
-//     } catch (error) {
-//       console.error('Error signing in:', error.message);
-//     }
-//   };
+  //   const handleSignIn = async (name, email) => {
+  //     try {
+  //       console.log('Signing in:', { name, email });
+  //     } catch (error) {
+  //       console.error('Error signing in:', error.message);
+  //     }
+  //   };
 
   const postNewAccount = async (user) => {
     try {
@@ -59,7 +59,7 @@ const JournalContainer = () => {
       const data = await response.json();
       setUser(data);
       fetchAllEntriesByUserId(data.id);
-      console.log("Grabbed user by username: ",data);
+      console.log("Grabbed user by username: ", data);
     } catch (error) {
       console.error("Error fetching user:", error);
     }
@@ -69,20 +69,19 @@ const JournalContainer = () => {
     const response = await fetch(`http://localhost:8080/users/sign-in`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user)
+      body: JSON.stringify(user),
     });
     if (response.status === 200) {
       const data = await response.json();
       setCurrentUser(data);
       fetchAllEntriesByUserId(data.id);
-      alert(`Welcome ${data.name}`)
+      alert(`Welcome ${data.name}`);
       console.log(data);
     } else {
       console.error("Invalid user details:", response.status);
       alert("Invalid user details");
     }
-  }
-
+  };
 
   const fetchAllEntriesByUserId = async (id) => {
     try {
@@ -99,37 +98,44 @@ const JournalContainer = () => {
 
   const postNewEntry = async (newEntry, userId) => {
     try {
-      const response = await fetch(`http://localhost:8080/journal-entries/${userId}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newEntry),
-      });
+      const response = await fetch(
+        `http://localhost:8080/journal-entries/${userId}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newEntry),
+        }
+      );
 
       if (response.status === 201) {
         const postedEntry = await response.json();
         setJournalEntries([...journalEntries, postedEntry]);
       } else {
-        console.error("Failed to post new entry. Status code:", response.status);
+        console.error(
+          "Failed to post new entry. Status code:",
+          response.status
+        );
       }
     } catch (error) {
       console.error("Error posting new entry:", error);
     }
-
   };
 
   const patchEntryById = async (entry) => {
-
     const entryDTO = {
       content: entry.content,
       weekDay: entry.weekDay,
-      moodRating: entry.moodRating
-    }
+      moodRating: entry.moodRating,
+    };
 
-    const response = await fetch(`http://localhost:8080/journal-entries/${entry.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(entryDTO)
-    });
+    const response = await fetch(
+      `http://localhost:8080/journal-entries/${entry.id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(entryDTO),
+      }
+    );
 
     const entryIndex = journalEntries.indexOf(entry);
     const updatedJournalEntries = journalEntries;
@@ -137,13 +143,12 @@ const JournalContainer = () => {
     setJournalEntries(updatedJournalEntries);
   };
 
-
   const deleteEntryById = async (entryId) => {
     const response = await fetch(
       `http://localhost:8080/journal-entries/${entryId}`,
       {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
       }
     );
     setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
@@ -154,31 +159,52 @@ const JournalContainer = () => {
   //   fetchAllEntriesByUserId(2);
   // }, []);
 
-
   const journalEntryRoutes = createBrowserRouter([
     {
       path: "/",
-      element: <>
-        <NavBar setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser}/>
-        
-      </>,
+      element: (
+        <>
+          <NavBar
+            setJournalEntries={setJournalEntries}
+            setCurrentUser={setCurrentUser}
+          />
+        </>
+      ),
       children: [
         {
           path: "/entries",
-          element: <JournalList journalEntries={journalEntries} deleteEntryById={deleteEntryById} selectEntryToEdit={selectEntryToEdit}/>,
+          element: (
+            <JournalList
+              journalEntries={journalEntries}
+              deleteEntryById={deleteEntryById}
+              selectEntryToEdit={selectEntryToEdit}
+            />
+          ),
         },
 
         {
           path: "/entries/new",
-          element: <NewEntryForm submitForm={postNewEntry} currentUser= {currentUser}/>,
+          element: (
+            <NewEntryForm submitForm={postNewEntry} currentUser={currentUser} />
+          ),
         },
         {
           path: "/entries/:id/edit",
-          element: <EditEntryForm submitForm={patchEntryById} entryToEdit={entryToEdit}/>,
+          element: (
+            <EditEntryForm
+              submitForm={patchEntryById}
+              entryToEdit={entryToEdit}
+            />
+          ),
         },
         {
           path: "/sign-in",
-          element: <AuthenticationForm submitForm={fetchUserByUserDTO} currentUser={currentUser}/>
+          element: (
+            <AuthenticationForm
+              submitForm={fetchUserByUserDTO}
+              currentUser={currentUser}
+            />
+          ),
         },
         {
           path: "/users/new",
@@ -186,22 +212,31 @@ const JournalContainer = () => {
         },
         {
           path: "/",
-          element: <Home />
-        }
-        
+          element: <Home />,
+        },
       ],
     },
   ]);
 
   return (
     <>
-      <h1 id="main-title">Gratitude Journal</h1>
-      <UserContext.Provider value={{ currentUser: currentUser || {} }}>
-        <RouterProvider router={journalEntryRoutes} />
-      </UserContext.Provider>
+      <div className="main-container">
+        <h1 id="main-title">Gratitude Journal</h1>
+        <div className="intro-section">
+          <p>
+            A warm welcome from the Positivity Pathfinders, where it's our
+            mission to map the route to a grateful life! This is a space for you
+            to express your thoughts, feelings, and experiences. Use the sidebar
+            to navigate through different sections and manage your journal
+            entries.
+          </p>
+        </div>
+        <UserContext.Provider value={{ currentUser: currentUser || {} }}>
+          <RouterProvider router={journalEntryRoutes} />
+        </UserContext.Provider>
+      </div>
     </>
   );
 };
 
 export default JournalContainer;
-

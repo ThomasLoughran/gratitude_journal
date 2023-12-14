@@ -18,6 +18,18 @@ body {
     margin: 20px 0;
     font-family: 'Kalnia', serif;
   }
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .intro-section {
+    width: 600px;
+    margin: auto;
+    box-sizing: border-box;
+  }
   
   /* JournalList styles */
   h2 {
@@ -119,4 +131,8 @@ body {
     width: 100%;
     box-sizing: border-box;
   }
+  
+  /* .sidebar {
+    
+  } */
   
