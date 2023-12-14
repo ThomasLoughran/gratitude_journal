@@ -3,8 +3,10 @@ package com.group6.GratitudeJournal.services;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.group6.GratitudeJournal.models.JournalEntry;
 import com.group6.GratitudeJournal.models.User;
 import com.group6.GratitudeJournal.models.UserDTO;
+import com.group6.GratitudeJournal.repositories.JournalEntryRepository;
 import com.group6.GratitudeJournal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    JournalEntryRepository journalEntryRepository;
 
     //find all users
 
@@ -36,7 +41,16 @@ public class UserService {
     }
 
     public void deleteUser(long id) {
-        userRepository.deleteById(id);
+        User userToDelete = userRepository.findById(id).orElse(null);
+        if (userToDelete != null) {
+            // Delete associated journal entries first
+            List<JournalEntry> userJournalEntries = userToDelete.getJournalEntries();
+            for (JournalEntry journalEntry : userJournalEntries) {
+                journalEntryRepository.deleteById(journalEntry.getId());
+            }
+            // Then delete the user
+            userRepository.deleteById(id);
+        }
     }
 
     public User updateUser(long id, UserDTO userDTO){
