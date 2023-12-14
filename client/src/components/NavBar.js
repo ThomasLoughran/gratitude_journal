@@ -101,7 +101,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
 
         </Menu>
       </Sidebar>
-      <Outlet />
+      {/* <Outlet /> */}
     </>
   );
 }
