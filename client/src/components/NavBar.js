@@ -1,8 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-//import {HomeOutlinedIcon} from "@mui/material"
+import { Sidebar, Menu, MenuItem, SidebarProps } from 'react-pro-sidebar';
+import {HomeOutlinedIcon} from "@mui/material"
 import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
@@ -15,8 +15,8 @@ import { CiLogout } from "react-icons/ci";
 const NavBar = ({ setJournalEntries }) => {
 
   const [collapsed, setCollapsed] = useState(true);
-
-  const handleToggleSidebar = () => {
+  
+  const handleToggleSidebar = () => { 
     setCollapsed(!collapsed);
   }
 
@@ -42,16 +42,18 @@ const NavBar = ({ setJournalEntries }) => {
     setJournalEntries([]);
   };
 
-  // const {collapseSidebar} = collapsed()
-  // const { collapseSidebar, toggleSidebar } = defaultCollapsed();
-
   return (
     <>
       <Sidebar 
       className="sidebar"
+      style={({width: collapsed ? '60px': '900px', display: "flex"})}
       collapsed={collapsed}>
-        <RxHamburgerMenu onClick={handleToggleSidebar}></RxHamburgerMenu>
+        <RxHamburgerMenu onClick={handleToggleSidebar}
+        style={({marginLeft:'30px'})}
+        ></RxHamburgerMenu>
         <Menu
+          // className="sidebar"
+          // style={({width: collapsed ? '60px': '300px', display: "flex", background:'#E1E8ED'})}
 
           menuItemStyles={{
             button: {
@@ -65,14 +67,19 @@ const NavBar = ({ setJournalEntries }) => {
           }}
         >
 
-          <MenuItem icon={<FiHome />}>Home</MenuItem>
+          <MenuItem 
+          //  style={{ width: collapsed ? '60px': '12000px'}}
+          icon={<FiHome />}>Home</MenuItem>
           <MenuItem
+          //  style={{ width: collapsed ? '60px': '12000px'}}
             icon={<IoIosJournal />}
             component={<Link to="/entries" />}> My Entries</MenuItem>
           <MenuItem
+          //  style={{ width: collapsed ? '60px': '12000px'}}
             icon={<FaPlus />}
             component={<Link to="/entries/new" />}>Create New Journal Entry</MenuItem>
           <MenuItem
+          //  style={{ width: collapsed ? '60px': '12000px'}}
             icon={<CiLogin />}
             component={<Link to="/sign-in" />}> Sign In</MenuItem>
           {renderSignOut()}
