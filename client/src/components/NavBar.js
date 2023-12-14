@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, SidebarProps } from 'react-pro-sidebar';
 import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
@@ -9,7 +9,6 @@ import { MdAccountCircle } from "react-icons/md";
 import { IoIosJournal } from "react-icons/io";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { RiDeleteBin5Fill } from "react-icons/ri";
-
 
 
 const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
@@ -70,57 +69,62 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
 
   return (
     <section>
-      {currentUser && (
-        <Sidebar
-          className="sidebar"
-          style={{
-            width: collapsed ? '120px' : '500px',
-            // display: 'flex', //doesn't seem to be doing anything...
-            border: 'none',
-            // position: 'fixed',  // removing this as it puts it above all contents
-          }}
-          collapsed={collapsed}
-        >
-          <RxHamburgerMenu
-            onClick={handleToggleSidebar}
-            style={{ marginLeft: '30px' }}
-          >
-          </RxHamburgerMenu>
+      <Sidebar
+        className="sidebar"
+        style={({
+          width: collapsed ? '120px' : '350px',
+          display: 'flex',
+          border: 'none'
+        })}
+        collapsed={collapsed}>
+        <RxHamburgerMenu
+          onClick={handleToggleSidebar}
+          style={({ marginLeft: '30px' })}>
+        </RxHamburgerMenu>
 
-          <Menu
-            menuItemStyles={{
-              button: {
-                [`&.active`]: {
-                  backgroundColor: '#13395e',
-                  color: '#b6c8d9',
-                },
+        <Menu
+          menuItemStyles={{
+            button: {
+              [`&.active`]: {
+                backgroundColor: '#13395e',
+                color: '#b6c8d9',
               },
-            }}
-          >
-            <MenuItem icon={<FiHome />} component={<Link to="/" />}>
-              Home
-            </MenuItem>
+            },
+          }}
+        >
+          <MenuItem
+            icon={<FiHome />}
+            component={<Link to="/" />}>
+            Home
+          </MenuItem>
 
-            <MenuItem icon={<IoIosJournal />} component={<Link to="/entries" />}>
-              My Entries
-            </MenuItem>
+          <MenuItem
+            icon={<CiLogin />}
+            component={<Link to="/sign-in" />}>
+            Sign In
+          </MenuItem>
 
-            <MenuItem icon={<FaPlus />} component={<Link to="/entries/new" />}>
-              Create New Journal Entry
-            </MenuItem>
+          <MenuItem
+            icon={<MdAccountCircle />}
+            component={<Link to="/users/new" />}>
+            Create Account
+          </MenuItem>
 
-            <MenuItem icon={<CiLogin />} component={<Link to="/sign-in" />}>
-              Sign In
-            </MenuItem>
+          <MenuItem
+            icon={<IoIosJournal />}
+            component={<Link to="/entries" />}>
+            My Entries
+          </MenuItem>
 
-            <MenuItem icon={<MdAccountCircle />} component={<Link to="/users/new" />}>
-              Create Account
-            </MenuItem>
-            {renderSignOut()}
-            
-          </Menu>
-        </Sidebar>
-      )}
+          <MenuItem
+            icon={<FaPlus />}
+            component={<Link to="/entries/new" />}>
+            Create New Journal Entry
+          </MenuItem>
+          {renderSignOut()}
+
+        </Menu>
+      </Sidebar>
       <Outlet />
     </section>
   );
