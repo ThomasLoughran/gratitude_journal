@@ -75,6 +75,7 @@ const JournalContainer = () => {
       const data = await response.json();
       setCurrentUser(data);
       fetchAllEntriesByUserId(data.id);
+      alert(`Welcome ${data.name}`)
       console.log(data);
     } else {
       console.error("Invalid user details:", response.status);
@@ -177,7 +178,7 @@ const JournalContainer = () => {
         },
         {
           path: "/sign-in",
-          element: <AuthenticationForm submitForm={fetchUserByUserDTO}/>
+          element: <AuthenticationForm submitForm={fetchUserByUserDTO} currentUser={currentUser}/>
         },
         {
           path: "/users/new",
