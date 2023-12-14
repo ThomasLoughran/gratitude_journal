@@ -31,21 +31,21 @@ const EditEntryForm = ({ submitForm, entryToEdit, currentUser }) => {
   }, [entryToEdit])
 
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        if (newEntry.content === "" || newEntry.moodRating=== "" || newEntry.weekDay === ""){
-          return alert("Incomplete form")
-        } else {
-          submitForm(newEntry, currentUser.id); 
-          setNewEntry(
-              {
-                  content: "",
-                  weekDay: "",
-                  moodRating: "",
-              }
-          );
-          console.log("Journal entry posted successfully!");
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (newEntry.content === "" || newEntry.moodRating === "" || newEntry.weekDay === "") {
+      return alert("Incomplete form")
+    } else {
+      submitForm(newEntry, currentUser.id);
+      setNewEntry(
+        {
+          content: "",
+          weekDay: "",
+          moodRating: "",
         }
+      );
+      console.log("Journal entry posted successfully!");
+    }
   }
 
 
@@ -57,44 +57,43 @@ const EditEntryForm = ({ submitForm, entryToEdit, currentUser }) => {
     }));
   };
 
-  if (entryToEdit && entryToEdit.id == id) {
+  if (entryToEdit && entryToEdit.id === id) {
     return (
-     
-        <form id="new-journal-entry" onSubmit={handleFormSubmit}>
-          <label>
-            Content:
-            <textarea
-              className="input-box"
-              name="content"
-              value={newEntry.content}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>Mood</label>
-          <select
-            name="moodRating"
+
+      <form id="new-journal-entry" onSubmit={handleFormSubmit}>
+        <label>
+          Content:
+          <textarea
+            className="input-box"
+            name="content"
+            value={newEntry.content}
             onChange={handleInputChange}
-          >
-            <option disabled value="select-mood">Mood</option>
-            {moodOptions}
-          </select>
-          <label>Weekday</label>
-          <select
-            name="weekDay"
-            onChange={handleInputChange}
-          >
-            <option disabled value="select-weekday">Weekday</option>
-            {weekdayOptions}
-          </select>
-          <button type="submit">Submit</button>
-        </form>
-      
+          />
+        </label>
+        <label>Mood</label>
+        <select
+          name="moodRating"
+          onChange={handleInputChange}
+        >
+          <option disabled value="select-mood">Mood</option>
+          {moodOptions}
+        </select>
+        <label>Weekday</label>
+        <select
+          name="weekDay"
+          onChange={handleInputChange}
+        >
+          <option disabled value="select-weekday">Weekday</option>
+          {weekdayOptions}
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+
     );
   } else {
     return null;
   }
-
-
+  
 }
 
 export default EditEntryForm;
