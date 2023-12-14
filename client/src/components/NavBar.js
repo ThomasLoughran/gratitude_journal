@@ -73,7 +73,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
       <Sidebar
         className="sidebar"
         style={({
-          width: collapsed ? '120px' : '350px',
+          width: collapsed ? '120px' : '100%',
           display: 'flex',
           border: 'none'
         })}
@@ -126,9 +126,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
 
         </Menu>
       </Sidebar>
-      )}
-      <Outlet />
-    </section>
+    </>
   );
 }
 

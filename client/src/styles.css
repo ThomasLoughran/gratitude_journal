@@ -4,6 +4,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    /* background-color: #f4f4f4; */
     background-color: #f4f4f4;
     color: #333;
   }
@@ -32,6 +33,7 @@ body {
   }
   
   /* JournalList styles */
+  
   h2 {
     color: #007bff;
   }
@@ -131,8 +133,12 @@ body {
     width: 100%;
     box-sizing: border-box;
   }
+
+  .page-body{
+    display: grid;
+    grid-template-columns: 20% 60%;
+  }
   
-  /* .sidebar {
-    
-  } */
-  
+  .title{
+    text-align: center;
+  }

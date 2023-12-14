@@ -56,34 +56,37 @@ const NewEntryForm = ({ submitForm, currentUser}) => {
   };
 
   return (
-    <form id="new-journal-entry" onSubmit={handleFormSubmit}>
-      <label>Content:</label>
-      <textarea
-        className="input-box"
-        name="content"
-        value={newEntry.content}
-        onChange={handleInputChange}
-      />
-      <label>Mood</label>
-      <select
-        name="moodRating"
-        defaultValue="select-mood"
-        onChange={handleInputChange}
-      >
-        <option disabled value="select-mood">Mood</option>
-        {moodOptions}
-      </select>
-      <label>Weekday</label>
-      <select
-        name="weekDay"
-        defaultValue="select-weekday"
-        onChange={handleInputChange}
-      >
-        <option disabled value="select-weekday">Weekday</option>
-        {weekdayOptions}
-      </select>
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <h2 className="Create-New-Entry">Create New Entry</h2>
+      <form id="new-journal-entry" onSubmit={handleFormSubmit}>
+        <label>Content:</label>
+        <textarea
+          className="input-box"
+          name="content"
+          value={newEntry.content}
+          onChange={handleInputChange}
+        />
+        <label>Mood</label>
+        <select
+          name="moodRating"
+          defaultValue="select-mood"
+          onChange={handleInputChange}
+        >
+          <option disabled value="select-mood">Mood</option>
+          {moodOptions}
+        </select>
+        <label>Weekday</label>
+        <select
+          name="weekDay"
+          defaultValue="select-weekday"
+          onChange={handleInputChange}
+        >
+          <option disabled value="select-weekday">Weekday</option>
+          {weekdayOptions}
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </>
   );
 }
 

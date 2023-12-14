@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import JournalList from "../components/JournalList";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "../components/Home";
 import NewEntryForm from "../forms/NewEntryForm";
-import NavBar from "../components/NavBar";
 import AuthenticationForm from "../forms/AuthenticationForm";
 import EditEntryForm from "../forms/EditEntryForm";
 import NewUserForm from "../forms/NewUserForm";
+import LandingPage from "../components/LandingPage";
 
 //exporting userContext so we can use it in our other files
 export const UserContext = createContext();
@@ -178,8 +178,7 @@ const JournalContainer = () => {
   const journalEntryRoutes = createBrowserRouter([
     {
       path: "/",
-      element:
-        <NavBar setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser} handleDeleteAccount={handleDeleteAccount}/>,
+      element: <LandingPage setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser} />,
       children: [
         {
           path: "/entries",
@@ -211,23 +210,11 @@ const JournalContainer = () => {
   ]);
 
   return (
-    <>
-      <div className="main-container">
-        <h1 id="main-title">Gratitude Journal</h1>
-        <div className="intro-section">
-          <p>
-            A warm welcome from the Positivity Pathfinders, where it's our
-            mission to map the route to a grateful life! This is a space for you
-            to express your thoughts, feelings, and experiences. Use the sidebar
-            to navigate through different sections and manage your journal
-            entries.
-          </p>
-        </div>
-        <UserContext.Provider value={{ currentUser: currentUser || {} }}>
-          <RouterProvider router={journalEntryRoutes} />
-        </UserContext.Provider>
-      </div>
-    </>
+
+      <UserContext.Provider value={{ currentUser: currentUser || {} }}>
+        <RouterProvider router={journalEntryRoutes} />
+      </UserContext.Provider>
+
   );
 };
 
