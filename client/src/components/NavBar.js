@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { FiHome } from "react-icons/fi";
