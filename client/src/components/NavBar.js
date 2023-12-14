@@ -44,7 +44,7 @@ const NavBar = ({ setJournalEntries }) => {
     <>
       <Sidebar
         className="sidebar"
-        style={({ width: collapsed ? '60px' : '900px', display: "flex" })}
+        style={({ width: collapsed ? '60px' : '270px', display: "flex" })}
         collapsed={collapsed}>
         <RxHamburgerMenu
           onClick={handleToggleSidebar}
@@ -63,7 +63,11 @@ const NavBar = ({ setJournalEntries }) => {
             },
           }}
         >
-          <MenuItem icon={<FiHome />}>Home</MenuItem>
+          <MenuItem
+            icon={<FiHome />}
+            component={<Link to="/" />}>
+            Home
+          </MenuItem>
 
           <MenuItem
             icon={<IoIosJournal />}
@@ -83,9 +87,10 @@ const NavBar = ({ setJournalEntries }) => {
             Sign In
           </MenuItem>
 
-          <MenuItem 
-            component={<Link to="/users/new" />}> 
-              Create Account
+          <MenuItem
+            icon={<FaPlus />}
+            component={<Link to="/users/new" />}>
+            Create Account
           </MenuItem>
           {renderSignOut()}
 
