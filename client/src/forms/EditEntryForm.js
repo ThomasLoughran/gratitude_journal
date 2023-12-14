@@ -36,7 +36,7 @@ const EditEntryForm = ({ submitForm, entryToEdit, currentUser }) => {
         if (newEntry.content === "" || newEntry.moodRating=== "" || newEntry.weekDay === ""){
           return alert("Incomplete form")
         } else {
-          submitForm(newEntry, currentUser.id); // remove dis line in d future
+          submitForm(newEntry, currentUser.id); 
           setNewEntry(
               {
                   content: "",
@@ -45,10 +45,10 @@ const EditEntryForm = ({ submitForm, entryToEdit, currentUser }) => {
               }
           );
           console.log("Journal entry posted successfully!");
-          
         }
-      console.log("Journal entry posted successfully!");
   }
+
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setNewEntry((prevEntry) => ({
@@ -59,7 +59,7 @@ const EditEntryForm = ({ submitForm, entryToEdit, currentUser }) => {
 
   if (entryToEdit && entryToEdit.id == id) {
     return (
-      <>
+     
         <form id="new-journal-entry" onSubmit={handleFormSubmit}>
           <label>
             Content:
@@ -88,7 +88,7 @@ const EditEntryForm = ({ submitForm, entryToEdit, currentUser }) => {
           </select>
           <button type="submit">Submit</button>
         </form>
-      </>
+      
     );
   } else {
     return null;

@@ -1,15 +1,14 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
 import { Sidebar, Menu, MenuItem, SidebarProps } from 'react-pro-sidebar';
-import { HomeOutlinedIcon } from "@mui/material"
 import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { IoIosJournal } from "react-icons/io";
-import { CiLogin } from "react-icons/ci";
-import { CiLogout } from "react-icons/ci";
+import { CiLogin, CiLogout} from "react-icons/ci";
+
 
 const NavBar = ({ setJournalEntries, setCurrentUser }) => {
 
