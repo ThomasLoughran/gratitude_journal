@@ -2,7 +2,7 @@
 # ☮️ The Gratitude Journal FrontEnd Project! ☮️
 
 ## Our Mission
-"MAPPING the ROUTE to grateful living."
+MAPPING the ROUTE to grateful living
 
 ## The Team
 * Janet Mensah
@@ -11,10 +11,8 @@
 * Hezekiah Adeusi
 
 ## The Project's Aims:
-
 ### For Users:
 * To provide our users with a space to log their gratitudes, hardships and goals for the future.
-
 ### For Developers:
 * To build on our working knowledge and skills of the React framework/library through implementation and utilisation of forms and React libraries such as React Pro Sidebar and React Icon, and more.
 
@@ -34,9 +32,9 @@
 * Ability for user to sign out
 
 ## Extensions
-* Peaceful, clean CSS
-* Mobile friendly button that has a scroll function following the user as they navigate the page, so they can create a new journal entry from anywhere on the app
-* Enable scrolling function for the side/navbar 
+* Beautiful CSS
+* Enabling password matching function (not encryption) when user signs in or creates account with name, email and password
+* Mobile friendly bottom that has a scroll function following the user as they navigate the page, so they can create a new journal entry from anywhere on the app
 
 ## Diagrams
 ### Wireframe Diagram

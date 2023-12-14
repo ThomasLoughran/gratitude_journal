@@ -1,13 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, SidebarProps } from 'react-pro-sidebar';
 import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { IoIosJournal } from "react-icons/io";
-import { CiLogin, CiLogout } from "react-icons/ci";
+import { CiLogin, CiLogout} from "react-icons/ci";
 
 
 const NavBar = ({ setJournalEntries, setCurrentUser }) => {
@@ -59,6 +59,8 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
         <Menu
           menuItemStyles={{
             button: {
+              // the active class will be added automatically by react router
+              // so we can use it to style the active menu item
               [`&.active`]: {
                 backgroundColor: '#13395e',
                 color: '#b6c8d9',
@@ -73,18 +75,6 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
           </MenuItem>
 
           <MenuItem
-            icon={<CiLogin />}
-            component={<Link to="/sign-in" />}>
-            Sign In
-          </MenuItem>
-
-          <MenuItem
-            icon={<MdAccountCircle />}
-            component={<Link to="/users/new" />}>
-            Create Account
-          </MenuItem>
-
-          <MenuItem
             icon={<IoIosJournal />}
             component={<Link to="/entries" />}>
             My Entries
@@ -96,6 +86,17 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
             Create New Journal Entry
           </MenuItem>
 
+          <MenuItem
+            icon={<CiLogin />}
+            component={<Link to="/sign-in" />}>
+            Sign In
+          </MenuItem>
+
+          <MenuItem
+            icon={<MdAccountCircle />}
+            component={<Link to="/users/new" />}>
+            Create Account
+          </MenuItem>
           {renderSignOut()}
 
         </Menu>

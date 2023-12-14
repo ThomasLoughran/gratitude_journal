@@ -21,13 +21,13 @@ const JournalContainer = () => {
     setEntryToEdit(entry);
   }
 
-  //   const handleSignIn = async (name, email) => {
-  //     try {
-  //       console.log('Signing in:', { name, email });
-  //     } catch (error) {
-  //       console.error('Error signing in:', error.message);
-  //     }
-  //   };
+//   const handleSignIn = async (name, email) => {
+//     try {
+//       console.log('Signing in:', { name, email });
+//     } catch (error) {
+//       console.error('Error signing in:', error.message);
+//     }
+//   };
 
   const postNewAccount = async (user) => {
     try {
@@ -136,26 +136,26 @@ const JournalContainer = () => {
     {
       path: "/",
       element: <>
-        <NavBar setJournalEntries={setJournalEntries} setCurrentUser={setCurrentUser} />
-
+        <NavBar setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser}/>
+        
       </>,
       children: [
         {
           path: "/entries",
-          element: <JournalList journalEntries={journalEntries} deleteEntryById={deleteEntryById} selectEntryToEdit={selectEntryToEdit} />,
+          element: <JournalList journalEntries={journalEntries} deleteEntryById={deleteEntryById} selectEntryToEdit={selectEntryToEdit}/>,
         },
 
         {
           path: "/entries/new",
-          element: <NewEntryForm submitForm={postNewEntry} currentUser={currentUser} />,
+          element: <NewEntryForm submitForm={postNewEntry} currentUser= {currentUser}/>,
         },
         {
           path: "/entries/:id/edit",
-          element: <EditEntryForm submitForm={patchEntryById} entryToEdit={entryToEdit} currentUser={currentUser} />,
+          element: <EditEntryForm submitForm={patchEntryById} entryToEdit={entryToEdit} currentUser={currentUser}/>,
         },
         {
           path: "/sign-in",
-          element: <AuthenticationForm submitForm={fetchUserByUserDTO} currentUser={currentUser} />
+          element: <AuthenticationForm submitForm={fetchUserByUserDTO} currentUser={currentUser}/>
         },
         {
           path: "/users/new",
@@ -165,7 +165,7 @@ const JournalContainer = () => {
           path: "/",
           element: <Home />
         }
-
+        
       ],
     },
   ]);
