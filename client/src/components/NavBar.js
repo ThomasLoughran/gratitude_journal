@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { FiHome } from "react-icons/fi";
@@ -8,6 +8,7 @@ import { FaPlus } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { IoIosJournal } from "react-icons/io";
 import { CiLogin, CiLogout } from "react-icons/ci";
+
 
 const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
   const [collapsed, setCollapsed] = useState(true);

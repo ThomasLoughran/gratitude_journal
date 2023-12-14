@@ -165,9 +165,9 @@ const JournalContainer = () => {
       }
     );
 
-    const entryIndex = journalEntries.indexOf(entry);
-    const updatedJournalEntries = journalEntries;
-    updatedJournalEntries.splice(entryIndex, 1, entry);
+    const entryIndex = journalEntries.indexOf(entry); // find the index of the entry to be replaced
+    const updatedJournalEntries = journalEntries;     // make a copy
+    updatedJournalEntries.splice(entryIndex, 1, entry); //We remove one entry at the index and replace it with entry
     setJournalEntries(updatedJournalEntries);
   };
 
@@ -181,11 +181,6 @@ const JournalContainer = () => {
     );
     setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
   };
-
-  // useEffect(() => {
-  //   fetchUserById(2); //Remember to take this out after
-  //   fetchAllEntriesByUserId(2);
-  // }, []);
 
   const journalEntryRoutes = createBrowserRouter([
     {
@@ -213,9 +208,7 @@ const JournalContainer = () => {
 
         {
           path: "/entries/new",
-          element: (
-            <NewEntryForm submitForm={postNewEntry} currentUser={currentUser} />
-          ),
+          element: <NewEntryForm submitForm={postNewEntry} currentUser={currentUser} />,
         },
         {
           path: "/entries/:id/edit",
