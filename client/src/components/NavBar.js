@@ -6,11 +6,12 @@ import { HomeOutlinedIcon } from "@mui/material"
 import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
+import { MdAccountCircle } from "react-icons/md";
 import { IoIosJournal } from "react-icons/io";
 import { CiLogin } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 
-const NavBar = ({ setJournalEntries, setCurrentUser}) => {
+const NavBar = ({ setJournalEntries, setCurrentUser }) => {
 
   const [collapsed, setCollapsed] = useState(true);
 
@@ -45,7 +46,11 @@ const NavBar = ({ setJournalEntries, setCurrentUser}) => {
     <>
       <Sidebar
         className="sidebar"
-        style={({ width: collapsed ? '60px' : '270px', display: "flex" })}
+        style={({
+          width: collapsed ? '120px' : '350px',
+          display: 'flex',
+          border: 'none'
+        })}
         collapsed={collapsed}>
         <RxHamburgerMenu
           onClick={handleToggleSidebar}
@@ -89,7 +94,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser}) => {
           </MenuItem>
 
           <MenuItem
-            icon={<FaPlus />}
+            icon={<MdAccountCircle />}
             component={<Link to="/users/new" />}>
             Create Account
           </MenuItem>
