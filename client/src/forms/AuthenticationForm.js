@@ -17,6 +17,11 @@ const AuthenticationForm = ({ submitForm }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     submitForm(formData);
+    // alert (`Welcome ${formData.name}`)
+    setFormData({
+      name: '',
+      emailAddress: '',
+    })
   };
 
   return (
