@@ -10,7 +10,7 @@ import { IoIosJournal } from "react-icons/io";
 import { CiLogin } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 
-const NavBar = ({ setJournalEntries }) => {
+const NavBar = ({ setJournalEntries, setCurrentUser}) => {
 
   const [collapsed, setCollapsed] = useState(true);
 
@@ -37,6 +37,7 @@ const NavBar = ({ setJournalEntries }) => {
   const handleLogout = () => {
     alert("You have successfully signed out!")
     console.log("Logout logic");
+    setCurrentUser(null);
     setJournalEntries([]);
   };
 

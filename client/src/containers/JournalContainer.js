@@ -158,7 +158,7 @@ const JournalContainer = () => {
     {
       path: "/",
       element: <>
-        <NavBar setJournalEntries = {setJournalEntries}/>
+        <NavBar setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser}/>
         
       </>,
       children: [
