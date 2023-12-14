@@ -1,24 +1,38 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, SidebarProps } from 'react-pro-sidebar';
+import { HomeOutlinedIcon } from "@mui/material"
+import { FiHome } from "react-icons/fi";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { FaPlus } from "react-icons/fa";
+import { IoIosJournal } from "react-icons/io";
+import { CiLogin } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
 
-const NavBar = ({setJournalEntries}) => {
+const NavBar = ({ setJournalEntries }) => {
+
+  const [collapsed, setCollapsed] = useState(true);
+
+  const handleToggleSidebar = () => {
+    setCollapsed(!collapsed);
+  }
+
   const { currentUser } = useContext(UserContext) || {};
-
 
   if (!currentUser) {
     return null;
   }
 
- const renderSignOut = () =>{
-    if(currentUser === null){
+  const renderSignOut = () => {
+    if (currentUser === null) {
       return <> </>
-    } else{
-     return<MenuItem component={<Link to ="/" onClick={handleLogout}/>}>Sign Out</MenuItem>
+    } else {
+      return <MenuItem
+        icon={<CiLogout />}
+        component={<Link to="/" onClick={handleLogout} />}>Sign Out</MenuItem>
     }
   }
-
 
   const handleLogout = () => {
     alert("You have successfully signed out!")
@@ -28,7 +42,15 @@ const NavBar = ({setJournalEntries}) => {
 
   return (
     <>
-      <Sidebar>
+      <Sidebar
+        className="sidebar"
+        style={({ width: collapsed ? '60px' : '900px', display: "flex" })}
+        collapsed={collapsed}>
+        <RxHamburgerMenu
+          onClick={handleToggleSidebar}
+          style={({ marginLeft: '30px' })}>
+        </RxHamburgerMenu>
+
         <Menu
           menuItemStyles={{
             button: {
@@ -41,58 +63,37 @@ const NavBar = ({setJournalEntries}) => {
             },
           }}
         >
-          
-          <MenuItem component={<Link to="/" />}> Home</MenuItem>
-          <MenuItem component={<Link to="/users/new" />}> Create Account</MenuItem>
-          <MenuItem component={<Link to="/entries" />}> My Entries</MenuItem>
-          <MenuItem component={<Link to="/entries/new" />}> Create New Journal Entry</MenuItem>
-          <MenuItem component={<Link to="/sign-in" />}> Sign In</MenuItem>
+          <MenuItem icon={<FiHome />}>Home</MenuItem>
+
+          <MenuItem
+            icon={<IoIosJournal />}
+            component={<Link to="/entries" />}>
+            My Entries
+          </MenuItem>
+
+          <MenuItem
+            icon={<FaPlus />}
+            component={<Link to="/entries/new" />}>
+            Create New Journal Entry
+          </MenuItem>
+
+          <MenuItem
+            icon={<CiLogin />}
+            component={<Link to="/sign-in" />}>
+            Sign In
+          </MenuItem>
+
+          <MenuItem 
+            component={<Link to="/users/new" />}> 
+              Create Account
+          </MenuItem>
           {renderSignOut()}
 
         </Menu>
       </Sidebar>
-      <Outlet/>
+      <Outlet />
     </>
   );
 }
 
 export default NavBar;
-
-//   return (
-//     <>
-//       <nav className="navbar-container">
-
-//         <div className="logo">
-//           <Link to="/">Gratitude Journal</Link>
-//         </div>
-
-//         <div className="menu">
-//           <label htmlFor="menu-toggle">&#9776; Menu</label>
-
-//           <ul>
-//             <li>
-//               <Link to="/">Home</Link>
-//             </li>
-
-//             <li>
-//               <Link to="/entries">My Entries</Link>
-//             </li>
-
-//             <li>
-//               <Link to="/entries/new">Create New Entry</Link>
-//             </li>
-
-//             {currentUser && (
-//               <li>
-//                 <button onClick={handleLogout}>
-//                   <Link to="/">Sign Out</Link>
-//                 </button>
-//               </li>
-//             )}
-//           </ul>
-//         </div>
-//       </nav>
-//       <Outlet />
-//     </>
-//   );
-// };
