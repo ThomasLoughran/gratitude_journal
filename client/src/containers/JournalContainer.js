@@ -59,7 +59,8 @@ const JournalContainer = () => {
   
       if (response.status === 204) {
         alert('Account deleted successfully!');
-        currentUser = null;
+        setCurrentUser(null);
+        setJournalEntries([]);
       } else {
         console.error('Failed to delete account. Status code:', response.status);
       }

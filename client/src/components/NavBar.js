@@ -69,6 +69,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
 
   return (
     <section>
+      {currentUser && (
       <Sidebar
         className="sidebar"
         style={({
@@ -125,6 +126,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
 
         </Menu>
       </Sidebar>
+      )}
       <Outlet />
     </section>
   );
