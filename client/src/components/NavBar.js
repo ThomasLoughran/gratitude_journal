@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../containers/JournalContainer";
 import { Sidebar, Menu, MenuItem, SidebarProps } from 'react-pro-sidebar';
 import { FiHome } from "react-icons/fi";
@@ -7,11 +7,11 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { IoIosJournal } from "react-icons/io";
-import { CiLogin, CiLogout} from "react-icons/ci";
+import { CiLogin, CiLogout } from "react-icons/ci";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 
 
-const NavBar = ({ setJournalEntries, setCurrentUser }) => {
-
+const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const handleToggleSidebar = () => {
@@ -20,29 +20,55 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
 
   const { currentUser } = useContext(UserContext) || {};
 
-  if (!currentUser) {
-    return null;
-  }
-
   const renderSignOut = () => {
     if (currentUser === null) {
       return <> </>
     } else {
-      return <MenuItem
-        icon={<CiLogout />}
-        component={<Link to="/" onClick={handleLogout} />}>Sign Out</MenuItem>
+      return (
+        <>
+          <MenuItem
+            icon={<CiLogout />}
+            onClick={handleLogout}
+          >
+            Sign Out
+          </MenuItem>
+          <MenuItem
+            icon={<RiDeleteBin5Fill />}
+            onClick={() => handleDeleteAccount(currentUser.id)}
+          >
+            Delete Account
+          </MenuItem>
+        </>
+      );
     }
   }
 
   const handleLogout = () => {
-    alert("You have successfully signed out!")
+    alert("You have successfully signed out!");
     console.log("Logout logic");
     setCurrentUser(null);
     setJournalEntries([]);
   };
+ 
+ //attempt 1.3
+  useEffect(() => {
+    // + event listener to handle scrolling and update the sidebar position
+    const handleScroll = () => {
+      const sidebar = document.querySelector('.sidebar');
+      if (sidebar) {
+        const scrollTop = window.scrollY;
+        sidebar.style.top = `${scrollTop}px`;
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    // -r event listener when component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [collapsed]);
 
   return (
-    <>
+    <section>
       <Sidebar
         className="sidebar"
         style={({
@@ -59,8 +85,6 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
         <Menu
           menuItemStyles={{
             button: {
-              // the active class will be added automatically by react router
-              // so we can use it to style the active menu item
               [`&.active`]: {
                 backgroundColor: '#13395e',
                 color: '#b6c8d9',
@@ -102,7 +126,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
         </Menu>
       </Sidebar>
       <Outlet />
-    </>
+    </section>
   );
 }
 
