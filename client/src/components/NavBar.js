@@ -6,6 +6,7 @@ import { HomeOutlinedIcon } from "@mui/material"
 import { FiHome } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaPlus } from "react-icons/fa";
+import { MdAccountCircle } from "react-icons/md";
 import { IoIosJournal } from "react-icons/io";
 import { CiLogin } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
@@ -89,7 +90,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser}) => {
           </MenuItem>
 
           <MenuItem
-            icon={<FaPlus />}
+            icon={<MdAccountCircle />}
             component={<Link to="/users/new" />}>
             Create Account
           </MenuItem>
