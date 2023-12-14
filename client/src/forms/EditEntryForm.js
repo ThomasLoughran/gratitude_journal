@@ -47,9 +47,7 @@ const EditEntryForm = ({ submitForm, entryToEdit, currentUser }) => {
           console.log("Journal entry posted successfully!");
           
         }
-      );
       console.log("Journal entry posted successfully!");
-    }
   }
   const handleInputChange = (event) => {
     const { name, value } = event.target;
