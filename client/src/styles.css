@@ -1,4 +1,3 @@
-/* styles.css */
 
 body {
     font-family: 'Arial', sans-serif;
@@ -15,25 +14,29 @@ body {
   }
   
   /* NavBar styles */
-  .sidebar {
+  /* .sidebar {
     background-color: #007bff;
     color: #fff;
-    width: 270px; /* Set a fixed width for the sidebar */
-  }
+  } */
+
   
-  .sidebar button {
+  /* .sidebar button {
     background-color: #0056b3;
     color: #fff;
     border: none;
-    padding: 15px; /* Increase padding for better visibility */
+    padding: 15px;
     margin: 5px;
     cursor: pointer;
     text-align: left;
-  }
+  } */
+
+  /* .sidebar.collapsed button {
+    padding: 10px;
+  } */
   
-  .sidebar button:hover {
+  /* .sidebar button:hover {
     background-color: #004080;
-  }
+  } */
   
   /* JournalList styles */
   h2 {

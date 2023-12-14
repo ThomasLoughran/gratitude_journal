@@ -45,7 +45,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser}) => {
     <>
       <Sidebar
         className="sidebar"
-        style={({ width: collapsed ? '60px' : '270px', display: "flex" })}
+        style={({ width: collapsed ? '120px' : '350px', display: "flex" })}
         collapsed={collapsed}>
         <RxHamburgerMenu
           onClick={handleToggleSidebar}
