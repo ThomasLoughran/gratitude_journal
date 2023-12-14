@@ -14,7 +14,7 @@ MAPPING the ROUTE to grateful living
 ### For Users:
 * To provide our users with a space to log their gratitudes, hardships and goals for the future.
 ### For Developers:
-* To build on our working knowledge and skills of the React framework/library through implementation and utilisation of forms and React libraries such as React Pro Sidebar, and more.
+* To build on our working knowledge and skills of the React framework/library through implementation and utilisation of forms and React libraries such as React Pro Sidebar and React Icon, and more.
 
 ### How to use the Website:
 * Download our app (coming soon!)
