@@ -195,7 +195,7 @@ const JournalContainer = () => {
 
   return (
     <>
-      <h1>Gratitude Journal</h1>
+      <h1 id="main-title">Gratitude Journal</h1>
       <UserContext.Provider value={{ currentUser: currentUser || {} }}>
         <RouterProvider router={journalEntryRoutes} />
       </UserContext.Provider>
