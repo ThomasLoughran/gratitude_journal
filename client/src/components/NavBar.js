@@ -8,6 +8,8 @@ import { FaPlus } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { IoIosJournal } from "react-icons/io";
 import { CiLogin, CiLogout } from "react-icons/ci";
+import { RiDeleteBin5Fill } from "react-icons/ri";
+
 
 const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -31,7 +33,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
             Sign Out
           </MenuItem>
           <MenuItem
-            icon={<CiLogout />}
+            icon={<RiDeleteBin5Fill />}
             onClick={() => handleDeleteAccount(currentUser.id)}
           >
             Delete Account
