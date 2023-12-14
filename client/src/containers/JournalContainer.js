@@ -47,23 +47,32 @@ const JournalContainer = () => {
       console.error("Error posting new user:", error);
     }
   };
+  
+  //second attempt at deleteAccount
 
-  const handleDeleteAccount = async (user) => {
+  const handleDeleteAccount = async (id) => {
+    if (currentUser === null) {
+      alert('Not signed in!');
+      return;
+    }
+  
+    // Get the current user's ID
+    const userId = currentUser.id;
+  
+    // Send a DELETE request to the /users/{id} endpoint
     try {
-      const response = await fetch(`http://localhost:8080/users/${currentUser.id}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch(`http://localhost:8080/users/${id}`, {
+        method: 'DELETE',
       });
-
+  
       if (response.status === 204) {
-        alert("Account deleted successfully!");
-        setCurrentUser(null);
-        setJournalEntries([]);
+        alert('Account deleted successfully!');
+        currentUser = null;
       } else {
-        console.error("Failed to delete account. Status code:", response.status);
+        console.error('Failed to delete account. Status code:', response.status);
       }
     } catch (error) {
-      console.error("Error deleting account:", error);
+      console.error('Failed to delete account:', error);
     }
   };
 
