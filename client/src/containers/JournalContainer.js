@@ -48,6 +48,25 @@ const JournalContainer = () => {
     }
   };
 
+  const handleDeleteAccount = async (user) => {
+    try {
+      const response = await fetch(`http://localhost:8080/users/${currentUser.id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.status === 204) {
+        alert("Account deleted successfully!");
+        setCurrentUser(null);
+        setJournalEntries([]);
+      } else {
+        console.error("Failed to delete account. Status code:", response.status);
+      }
+    } catch (error) {
+      console.error("Error deleting account:", error);
+    }
+  };
+
   // Set user function
   const setUser = (user) => {
     setCurrentUser(user);
@@ -167,6 +186,7 @@ const JournalContainer = () => {
           <NavBar
             setJournalEntries={setJournalEntries}
             setCurrentUser={setCurrentUser}
+            handleDeleteAccount={handleDeleteAccount}
           />
         </>
       ),

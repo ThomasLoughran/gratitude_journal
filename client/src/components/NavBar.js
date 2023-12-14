@@ -9,7 +9,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { IoIosJournal } from "react-icons/io";
 import { CiLogin, CiLogout } from "react-icons/ci";
 
-const NavBar = ({ setJournalEntries, setCurrentUser }) => {
+const NavBar = ({ setJournalEntries, setCurrentUser, handleDeleteAccount }) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const handleToggleSidebar = () => {
@@ -22,18 +22,32 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
     if (currentUser === null) {
       return <> </>
     } else {
-      return <MenuItem
-        icon={<CiLogout />}
-        component={<Link to="/" onClick={handleLogout} />}>Sign Out</MenuItem>
+      return (
+        <>
+          <MenuItem
+            icon={<CiLogout />}
+            onClick={handleLogout}
+          >
+            Sign Out
+          </MenuItem>
+          <MenuItem
+            icon={<CiLogout />}
+            onClick={() => handleDeleteAccount(currentUser.id)}
+          >
+            Delete Account
+          </MenuItem>
+        </>
+      );
     }
   }
 
   const handleLogout = () => {
-    alert("You have successfully signed out!")
+    alert("You have successfully signed out!");
     console.log("Logout logic");
     setCurrentUser(null);
     setJournalEntries([]);
   };
+ 
  //attempt 1.3
   useEffect(() => {
     // + event listener to handle scrolling and update the sidebar position
@@ -52,7 +66,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
   }, [collapsed]);
 
   return (
-    <>
+    <section>
       {currentUser && (
         <Sidebar
           className="sidebar"
@@ -100,11 +114,12 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
               Create Account
             </MenuItem>
             {renderSignOut()}
+            
           </Menu>
         </Sidebar>
       )}
       <Outlet />
-    </>
+    </section>
   );
 }
 
