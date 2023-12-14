@@ -1,10 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext } from 'react';
-import {UserContext} from '../containers/JournalContainer'
 
-const JournalEntry = ({ oneEntry, deleteEntryById, patchEntryById, selectEntryToEdit}) => {
-
-    const {currentUser} = useContext(UserContext);
+const JournalEntry = ({ oneEntry, deleteEntryById, selectEntryToEdit}) => {
 
     const handleDeleteButton = () => {
         deleteEntryById(oneEntry.id);

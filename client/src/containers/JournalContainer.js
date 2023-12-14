@@ -48,23 +48,6 @@ const JournalContainer = () => {
     }
   };
 
-  // Set user function
-  const setUser = (user) => {
-    setCurrentUser(user);
-  };
-
-  const fetchUserById = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:8080/users/${id}`);
-      const data = await response.json();
-      setUser(data);
-      fetchAllEntriesByUserId(data.id);
-      console.log("Grabbed user by username: ",data);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-    }
-  };
-
   const fetchUserByUserDTO = async (user) => {
     const response = await fetch(`http://localhost:8080/users/sign-in`, {
       method: "PUT",
@@ -131,9 +114,9 @@ const JournalContainer = () => {
       body: JSON.stringify(entryDTO)
     });
 
-    const entryIndex = journalEntries.indexOf(entry);
-    const updatedJournalEntries = journalEntries;
-    updatedJournalEntries.splice(entryIndex, 1, entry);
+    const entryIndex = journalEntries.indexOf(entry); // find the index of the entry to be replaced
+    const updatedJournalEntries = journalEntries;     // make a copy
+    updatedJournalEntries.splice(entryIndex, 1, entry); //We remove one entry at the index and replace it with entry
     setJournalEntries(updatedJournalEntries);
   };
 
@@ -148,12 +131,6 @@ const JournalContainer = () => {
     );
     setJournalEntries(journalEntries.filter((entry) => entry.id !== entryId));
   };
-
-  // useEffect(() => {
-  //   fetchUserById(2); //Remember to take this out after
-  //   fetchAllEntriesByUserId(2);
-  // }, []);
-
 
   const journalEntryRoutes = createBrowserRouter([
     {
@@ -174,7 +151,7 @@ const JournalContainer = () => {
         },
         {
           path: "/entries/:id/edit",
-          element: <EditEntryForm submitForm={patchEntryById} entryToEdit={entryToEdit}/>,
+          element: <EditEntryForm submitForm={patchEntryById} entryToEdit={entryToEdit} currentUser={currentUser}/>,
         },
         {
           path: "/sign-in",
