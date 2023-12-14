@@ -11,7 +11,7 @@ import { IoIosJournal } from "react-icons/io";
 import { CiLogin } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 
-const NavBar = ({ setJournalEntries, setCurrentUser}) => {
+const NavBar = ({ setJournalEntries, setCurrentUser }) => {
 
   const [collapsed, setCollapsed] = useState(true);
 
@@ -46,7 +46,11 @@ const NavBar = ({ setJournalEntries, setCurrentUser}) => {
     <>
       <Sidebar
         className="sidebar"
-        style={({ width: collapsed ? '120px' : '350px', display: "flex" })}
+        style={({
+          width: collapsed ? '120px' : '350px',
+          display: 'flex',
+          border: 'none'
+        })}
         collapsed={collapsed}>
         <RxHamburgerMenu
           onClick={handleToggleSidebar}

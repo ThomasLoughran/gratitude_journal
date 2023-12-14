@@ -134,4 +134,8 @@ body {
     color: #007bff;
   }
   
+  .input-box {
+    width: 100%;
+    box-sizing: border-box;
+  }
   
