@@ -34,7 +34,7 @@ MAPPING the ROUTE to grateful living
 ## Extensions
 * Beautiful CSS
 * Enabling password matching function (not encryption) when user signs in or creates account with name, email and password
-* Mobile friendly botton that has a scroll function following the user as they navigate the page, so they can create a new journal entry from anywhere on the app
+* Mobile friendly bottom that has a scroll function following the user as they navigate the page, so they can create a new journal entry from anywhere on the app
 
 ## Diagrams
 ### Wireframe Diagram
