@@ -75,18 +75,6 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
           </MenuItem>
 
           <MenuItem
-            icon={<IoIosJournal />}
-            component={<Link to="/entries" />}>
-            My Entries
-          </MenuItem>
-
-          <MenuItem
-            icon={<FaPlus />}
-            component={<Link to="/entries/new" />}>
-            Create New Journal Entry
-          </MenuItem>
-
-          <MenuItem
             icon={<CiLogin />}
             component={<Link to="/sign-in" />}>
             Sign In
@@ -96,6 +84,18 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
             icon={<MdAccountCircle />}
             component={<Link to="/users/new" />}>
             Create Account
+          </MenuItem>
+
+          <MenuItem
+            icon={<IoIosJournal />}
+            component={<Link to="/entries" />}>
+            My Entries
+          </MenuItem>
+
+          <MenuItem
+            icon={<FaPlus />}
+            component={<Link to="/entries/new" />}>
+            Create New Journal Entry
           </MenuItem>
           {renderSignOut()}
 
