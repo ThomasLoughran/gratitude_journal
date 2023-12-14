@@ -1,14 +1,19 @@
 import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
+import logo from "../Images/logo.png";
 
 const LandingPage = (setCurrentUser, setJournalEntries) => {
     return ( 
         <>  
         <section className="title">
           <h1 id="main-title">Gratitude Journal</h1>
+           <img src={logo} className="logo"/>
         </section>
+        
         <section className="page-body">
           <section className="nav-bar">
+          
+
             <NavBar setJournalEntries = {setJournalEntries} setCurrentUser={setCurrentUser}/>
           </section>
           <section className="router-body">

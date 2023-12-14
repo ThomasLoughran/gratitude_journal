@@ -46,7 +46,7 @@ const NavBar = ({ setJournalEntries, setCurrentUser }) => {
       <Sidebar
         className="sidebar"
         style={({
-          width: collapsed ? '120px' : '350px',
+          width: collapsed ? '120px' : '100%',
           display: 'flex',
           border: 'none'
         })}

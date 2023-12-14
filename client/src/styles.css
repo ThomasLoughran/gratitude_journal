@@ -17,6 +17,8 @@ body {
     text-align: center;
     margin: 20px 0;
   }
+
+
   
   /* NavBar styles */
   /* .sidebar {
@@ -44,6 +46,7 @@ body {
   } */
   
   /* JournalList styles */
+  
   h2 {
     color: #007bff;
   }
@@ -145,6 +148,10 @@ body {
   }
 
   .page-body{
-    
+    display: grid;
+    grid-template-columns: 20% 80%;
   }
   
+  .title{
+    text-align: center;
+  }
