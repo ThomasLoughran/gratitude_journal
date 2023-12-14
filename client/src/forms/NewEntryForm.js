@@ -33,7 +33,9 @@ const NewEntryForm = ({ submitForm, currentUser}) => {
         {
           return alert('Not signed in!')
         } else {
-          submitForm(newEntry,currentUser.id);
+
+          submitForm(newEntry,currentUser.id); 
+
           setNewEntry(
               {
                   content: "",
