@@ -56,6 +56,18 @@ public class DataLoader implements ApplicationRunner {
         JournalEntry journalEntry3 = new JournalEntry(user2, "I had a good day", WeekDay.THURSDAY, MoodRating.POSITIVE);
         journalEntryRepository.save(journalEntry3);
 
+        JournalEntry journalEntry7 = new JournalEntry(user2, "I had an alright day", WeekDay.THURSDAY, MoodRating.INDIFFERENT);
+        journalEntryRepository.save(journalEntry7);
+
+        JournalEntry journalEntry8 = new JournalEntry(user2, "I had a PRETTY FANTASTIC day", WeekDay.THURSDAY, MoodRating.REALLYGOOD);
+        journalEntryRepository.save(journalEntry8);
+
+        JournalEntry journalEntry9 = new JournalEntry(user2, "I had a trash day", WeekDay.THURSDAY, MoodRating.NEGATIVE);
+        journalEntryRepository.save(journalEntry9);
+
+        JournalEntry journalEntry10 = new JournalEntry(user2, "leave me alone.", WeekDay.THURSDAY, MoodRating.NEGATIVE);
+        journalEntryRepository.save(journalEntry10);
+
         JournalEntry journalEntry4 = new JournalEntry(user3, "I had an average day", WeekDay.SUNDAY, MoodRating.INDIFFERENT);
         journalEntryRepository.save(journalEntry4);
 
