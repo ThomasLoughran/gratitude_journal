@@ -20,21 +20,29 @@ MAPPING the ROUTE to grateful living
 * Download our app (coming soon!)
 * Fork this repo and clone locally to your terminal.
 * Run the API and the client project file locally.
-* If you're a new user, create an account by inputting your name and email (password TBC)
+* If you're a new user, create an account by inputting your name and email.
 * If you're an existing user, just click on the sign in button and input your details.
 * Once you're signed in, you should be able to create a new journal entry, view all your entries and also edit or delete any entry in the list.
 * Once you've finished logging all of your day (or week...or year!)'s happenings, remember to sign out!
+* If you've decided you no longer require a journal to document your thoughts, you can delete your account (but we'll be sad to see you go 😢!)
+
+## Dependencies/Required Installs
+* npm i react-pro-sidebar react-icons
+* npm install react-pro-sidebar
+* npm install @mui/material @emotion/react @emotion/styled
+* npm i react-router-dom
 
 ## MVP
-* Ability for user to sign in or create account
-* Ability for user to create a new journal entry
-* Ability for user to view, edit or delete all journal entries
-* Ability for user to sign out
+* Ability for user to sign in or create account ✅
+* Ability for user to create a new journal entry ✅
+* Ability for user to view, edit or delete all journal entries ✅
+* Ability for user to sign out ✅
 
 ## Extensions
-* Beautiful CSS
-* Enabling password matching function (not encryption) when user signs in or creates account with name, email and password
-* Mobile friendly bottom that has a scroll function following the user as they navigate the page, so they can create a new journal entry from anywhere on the app
+* Beautiful CSS ✅
+* Enable user to delete their account ✅
+* Enabling password matching function (not encryption) when user signs in or creates account with name, email and password ⏸️
+* Mobile friendly button that has a scroll function following the user as they navigate the page, so they can create a new journal entry from anywhere on the app ⏸️
 
 ## Diagrams
 ### Wireframe Diagram
