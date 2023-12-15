@@ -31,6 +31,7 @@ MAPPING the ROUTE to grateful living
 * npm install react-pro-sidebar
 * npm install @mui/material @emotion/react @emotion/styled
 * npm i react-router-dom
+* Ensure to do a createdb gratitude_journal install in your terminal
 
 ## MVP
 * Ability for user to sign in or create account ✅
